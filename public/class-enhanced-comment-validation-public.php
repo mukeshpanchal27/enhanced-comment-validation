@@ -51,7 +51,8 @@ class Enhanced_Comment_Validation_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		add_filter('comment_form_default_fields', [$this,'Enhanced_Comment_Validation_custom_fields']);
+		add_action( 'comment_post', [$this,'Enhanced_Comment_Validation_save_comment_meta_data'] );	
 	}
 
 	/**
@@ -72,8 +73,13 @@ class Enhanced_Comment_Validation_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		$get_validation_option_style = get_option( 'Enhanced_Comment_Validation_option' );
+		$a = isset( $get_validation_option_style['_show_message'] )  ?  $get_validation_option_style['_show_message'] : ''  ;
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/enhanced-comment-validation-public.css', array(), $this->version, 'all' );
+		if($a === 'show_style' ){
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/enhanced-comment-validation-public.css', array(), $this->version, 'all' );
+		}
+		
 
 	}
 
@@ -97,7 +103,74 @@ class Enhanced_Comment_Validation_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'jquery-validate', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery' ), $this->version, false );	
+		wp_enqueue_script( 'input-validation', plugin_dir_url( __FILE__ ) . 'js/input-validation.js', array( 'jquery' ), $this->version, false );
 
+		$get_validation_option = get_option( 'Enhanced_Comment_Validation_option' );
+	
+		if(is_single() && comments_open() ) {
+		
+			$validation_form_array	= array();
+
+			if(isset($get_validation_option['comment_input']) && $get_validation_option['comment_input'] != ''){
+				$validation_form_array['comment_input'] = __($get_validation_option['comment_input']); 
+			} else {
+				$validation_form_array['comment_input'] = __('Please enter your comment.');
+				$get_validation_option['comment_input'] = __('Please enter your comment.');
+			}
+
+			if(isset($get_validation_option['name_input']) && $get_validation_option['name_input'] != ''){
+				$validation_form_array['name_input'] = __($get_validation_option['name_input']); 
+			} else {
+				$validation_form_array['name_input'] = __('Please enter your name.');
+				$get_validation_option['name_input'] = __('Please enter your name.');
+			}
+
+			if(isset($get_validation_option['email_input']) && $get_validation_option['email_input'] != ''){
+				$validation_form_array['email_input'] = __($get_validation_option['email_input']); 
+			} else {
+				$validation_form_array['email_input'] = __('Please enter your email address.');
+				$get_validation_option['email_input'] = __('Please enter your email address.');
+			}
+			
+			if(isset($get_validation_option['website_input']) && $get_validation_option['website_input'] != ''){
+				$validation_form_array['website_input'] = __($get_validation_option['website_input']); 
+			} else {
+				$validation_form_array['website_input'] = __('Please enter your Url.');
+				$get_validation_option['website_input'] = __('Please enter your Url.');
+			}
+			
+			$final_array_data = array_merge($validation_form_array, $get_validation_option);
+			 
+			if( isset( $get_validation_option['_enable'] )  ?  $get_validation_option['_enable'] : '' ):
+				wp_localize_script( 'input-validation', 'form_obj', $final_array_data );					
+			endif;
+			 
+		}
+	}
+
+	// create custom fields
+	public function Enhanced_Comment_Validation_custom_fields($fields) {
+
+		$commenter = wp_get_current_commenter();		
+		$get_input = get_option( 'Enhanced_Comment_Validation_form_input' );
+
+		if( isset( $get_input['custom_input'] ) && $get_input['custom_input'] != '' ){
+			$fields[ $get_input['custom_input'] ] = '<p class="comment-form-'.$get_input['custom_input'].'">'.
+			'<label for="'.$get_input['custom_input'].'">' . __( $get_input['custom_input'] ) . '</label>'.
+			'<input id="'.$get_input['custom_input'].'" name="'.$get_input['custom_input'].'" type="text" size="30"  tabindex="4" required/></p>';
+		}
+		return $fields;
+	}
+
+	// save custom field data 
+	public function Enhanced_Comment_Validation_save_comment_meta_data( $comment_id ) {
+		$get_input = get_option( 'Enhanced_Comment_Validation_form_input' );
+
+		if( isset( $get_input['custom_input'] ) && $get_input['custom_input'] != '' ){
+			add_comment_meta( $comment_id, $get_input['custom_input'] , $_POST[ $get_input['custom_input'] ] );
+		}
+		
 	}
 
 }
