@@ -53,6 +53,11 @@ class Enhanced_Comment_Validation_Public {
 		$this->version = $version;
 		add_filter('comment_form_default_fields', [$this,'Enhanced_Comment_Validation_custom_fields']);
 		add_action( 'comment_post', [$this,'Enhanced_Comment_Validation_save_comment_meta_data'] );	
+
+		if ( !defined( 'Enhanced_RECAPTCHA_SHOW' ) ) {
+			define( 'Enhanced_RECAPTCHA_SHOW', 	'https://www.google.com/recaptcha/api.js?' );
+		}
+		
 	}
 
 	/**
@@ -101,13 +106,20 @@ class Enhanced_Comment_Validation_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
+		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-public.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'jquery-validate', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery' ), $this->version, false );	
-		wp_enqueue_script( 'input-validation', plugin_dir_url( __FILE__ ) . 'js/input-validation.js', array( 'jquery' ), $this->version, false );
+		
+		if( is_single() && comments_open() ){
+			wp_enqueue_script( 'input-validation', plugin_dir_url( __FILE__ ) . 'js/input-validation.js', array( 'jquery' ), $this->version, false );
+		}
+		
+	
 
 		$get_validation_option = get_option( 'Enhanced_Comment_Validation_option' );
-	
+		
+		$get_Enhanced_Comment_Validation_form_input=  get_option('Enhanced_Comment_Validation_form_input' );
+		
 		if(is_single() && comments_open() ) {
 		
 			$validation_form_array	= array();
@@ -140,25 +152,33 @@ class Enhanced_Comment_Validation_Public {
 				$get_validation_option['website_input'] = __('Please enter your Url.');
 			}
 			
-			$final_array_data = array_merge($validation_form_array, $get_validation_option);
+			$final_array_data = array_merge($validation_form_array, $get_validation_option,$get_Enhanced_Comment_Validation_form_input);
+			
 			 
 			if( isset( $get_validation_option['_enable'] )  ?  $get_validation_option['_enable'] : '' ):
 				wp_localize_script( 'input-validation', 'form_obj', $final_array_data );					
 			endif;
+			
+			// reCAPTCHA Google script			
+			wp_register_script ( 'Enhanced_Comment_Validation_recaptcha_call', Enhanced_RECAPTCHA_SHOW . "onload=Enhanced_RecaptchaCallback&render=explicit", array('jquery'), false, true );
+			wp_enqueue_script  ( 'Enhanced_Comment_Validation_recaptcha_call' );
 			 
 		}
 	}
 
 	// create custom fields
 	public function Enhanced_Comment_Validation_custom_fields($fields) {
-
+	
 		$commenter = wp_get_current_commenter();		
-		$get_input = get_option( 'Enhanced_Comment_Validation_form_input' );
-
-		if( isset( $get_input['custom_input'] ) && $get_input['custom_input'] != '' ){
-			$fields[ $get_input['custom_input'] ] = '<p class="comment-form-'.$get_input['custom_input'].'">'.
-			'<label for="'.$get_input['custom_input'].'">' . __( $get_input['custom_input'] ) . '</label>'.
-			'<input id="'.$get_input['custom_input'].'" name="'.$get_input['custom_input'].'" type="text" size="30"  tabindex="4" required/></p>';
+		$get_Enhanced_Comment_Validation_form_input=  get_option('Enhanced_Comment_Validation_form_input' );
+		
+		$featured = isset($get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha']) && $get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha'] == 1 ? 'invisible' : '';
+	
+		// recaptcha
+		if( isset( $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] )  ?  $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] : '' ){
+			$fields['captcha'] = '<p>
+						<div class="g-recaptcha" id="comment_form_recaptcha"  data-size="'.$featured.'"></div>						
+					</p>';
 		}
 		return $fields;
 	}

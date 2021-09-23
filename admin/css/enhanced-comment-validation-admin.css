@@ -3,10 +3,18 @@
  * included in this file.
  */
 
+  /* input swtch start*/
+  .Enhanced-Comment-Validation-lable-input-switch{
+  border-bottom: 1px solid azure;
+    height: 60px; 
+    list-style: none;
+  }
+/* ----END ----- */
+
   /* all lable start*/
 
-.Enhanced-Comment-Validation-switch-lable {
- 
+  .Enhanced-Comment-Validation-switch-lable {
+    color: black;
     font-weight: 300;
     font-size: 1.5em;
     padding-left:20px;
@@ -21,6 +29,7 @@
     padding-right: 5px;
     height: 30px;  
     width: 100px;
+    color: black;
     z-index: 9;
     position: relative;
     top: 30px;
@@ -32,7 +41,8 @@
   }
   
   .Enhanced-Comment-Validation-lable-input-new-commet{
-    width: 15em;
+    width: 8em;
+    color: black;
     font-weight: 300;
     font-size: 1.7em;
     padding-left: 5px;
@@ -133,7 +143,7 @@
       background-color: #E6E6E6;
       outline: 3px solid transparent;
       transition: outline .2s, flex-basis .2s;
-      width: 100%;
+      width : 100%;
     }
     .Enhanced-Comment-Validation-form .Enhanced-Comment-Validation-form-input:nth-child {
       flex: 3 1 300px;
@@ -184,7 +194,7 @@
       float: left;
       width: 100%;
       height: 100px;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid azure;
     }
   
     .Enhanced-Comment-Validation-radio-ul .Enhanced-Comment-Validation-radio-li .Enhanced-Comment-Validation-radio-button{
