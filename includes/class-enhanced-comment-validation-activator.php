@@ -30,6 +30,22 @@ class Enhanced_Comment_Validation_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		
+		/*wp_redirect( admin_url( 'admin.php?page=enhanced-comment-validation' ) );
+		exit;*/
+		$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+		if ( empty( $enhanced_comment_validation_settings ) ) {
+			$default_options = array(
+				'_enable_validation' => 'yes',
+				'_message_style' => 'style1',
+				'_enable_name' => 'yes',
+				'_enable_email' => 'yes',
+				'_name_message' => __( 'Please enter your name', 'enhanced-comment-validation' ),
+				'_email_message' => __( 'Please enter your email', 'enhanced-comment-validation' ),
+
+			);
+			update_option( 'enhanced_comment_validation_settings', $default_options );
+		}
 
 	}
 

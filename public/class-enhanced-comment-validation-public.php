@@ -78,14 +78,8 @@ class Enhanced_Comment_Validation_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		$get_validation_option_style = get_option( 'Enhanced_Comment_Validation_option' );
-		$a = isset( $get_validation_option_style['_show_message'] )  ?  $get_validation_option_style['_show_message'] : ''  ;
-
-		if($a === 'show_style' ){
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/enhanced-comment-validation-public.css', array(), $this->version, 'all' );
-		}
 		
-
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/enhanced-comment-validation-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -111,57 +105,52 @@ class Enhanced_Comment_Validation_Public {
 		wp_enqueue_script( 'jquery-validate', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery' ), $this->version, false );	
 		
 		if( is_single() && comments_open() ){
-			wp_enqueue_script( 'input-validation', plugin_dir_url( __FILE__ ) . 'js/input-validation.js', array( 'jquery' ), $this->version, false );
-		}
-		
-	
-
-		$get_validation_option = get_option( 'Enhanced_Comment_Validation_option' );
-		
-		$get_Enhanced_Comment_Validation_form_input=  get_option('Enhanced_Comment_Validation_form_input' );
-		
-		if(is_single() && comments_open() ) {
-		
-			$validation_form_array	= array();
-
-			if(isset($get_validation_option['comment_input']) && $get_validation_option['comment_input'] != ''){
-				$validation_form_array['comment_input'] = __($get_validation_option['comment_input']); 
-			} else {
-				$validation_form_array['comment_input'] = __('Please enter your comment.');
-				$get_validation_option['comment_input'] = __('Please enter your comment.');
-			}
-
-			if(isset($get_validation_option['name_input']) && $get_validation_option['name_input'] != ''){
-				$validation_form_array['name_input'] = __($get_validation_option['name_input']); 
-			} else {
-				$validation_form_array['name_input'] = __('Please enter your name.');
-				$get_validation_option['name_input'] = __('Please enter your name.');
-			}
-
-			if(isset($get_validation_option['email_input']) && $get_validation_option['email_input'] != ''){
-				$validation_form_array['email_input'] = __($get_validation_option['email_input']); 
-			} else {
-				$validation_form_array['email_input'] = __('Please enter your email address.');
-				$get_validation_option['email_input'] = __('Please enter your email address.');
-			}
 			
-			if(isset($get_validation_option['website_input']) && $get_validation_option['website_input'] != ''){
-				$validation_form_array['website_input'] = __($get_validation_option['website_input']); 
-			} else {
-				$validation_form_array['website_input'] = __('Please enter your Url.');
-				$get_validation_option['website_input'] = __('Please enter your Url.');
+			$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+			
+			if ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_validation'] ) {
+
+				wp_enqueue_script( 'input-validation', plugin_dir_url( __FILE__ ) . 'js/input-validation.js', array( 'jquery' ), $this->version, false );
+
+				$_comment_message = $_name_message = $_email_message = $_website_message = '';
+
+				if ( isset( $enhanced_comment_validation_settings['_enable_comment'] ) && $enhanced_comment_validation_settings['_enable_comment'] === 'yes' ) {
+					if ( isset( $enhanced_comment_validation_settings['_comment_message'] ) && $enhanced_comment_validation_settings['_comment_message'] !== '' ) {
+						$_comment_message = $enhanced_comment_validation_settings['_comment_message']; 
+					}
+				}
+
+				if ( isset( $enhanced_comment_validation_settings['_enable_name'] ) && $enhanced_comment_validation_settings['_enable_name'] === 'yes' ) {
+					if ( isset( $enhanced_comment_validation_settings['_name_message'] ) && $enhanced_comment_validation_settings['_name_message'] !== '' ) {
+						$_name_message = $enhanced_comment_validation_settings['_name_message']; 
+					}
+				}
+
+				if ( isset( $enhanced_comment_validation_settings['_enable_email'] ) && $enhanced_comment_validation_settings['_enable_email'] === 'yes' ) {
+					if ( isset( $enhanced_comment_validation_settings['_email_message'] ) && $enhanced_comment_validation_settings['_email_message'] !== '' ) {
+						$_email_message = $enhanced_comment_validation_settings['_email_message']; 
+					}
+				}
+
+				if ( isset( $enhanced_comment_validation_settings['_enable_website'] ) && $enhanced_comment_validation_settings['_enable_website'] === 'yes' ) {
+					if ( isset( $enhanced_comment_validation_settings['_website_message'] ) && $enhanced_comment_validation_settings['_website_message'] !== '' ) {
+						$_website_message = $enhanced_comment_validation_settings['_website_message']; 
+					}
+				}
+						
+				wp_localize_script( $this->plugin_name, 'form_obj',
+					array( 
+						'_comment_message' 	=> $_comment_message,
+						'_name_message' 	=> $_name_message,
+						'_email_message' 	=> $_email_message,
+						'_website_message' 	=> $_website_message
+					)
+				);
+			
+				// reCAPTCHA Google script			
+				wp_register_script ( 'Enhanced_Comment_Validation_recaptcha_call', Enhanced_RECAPTCHA_SHOW . "onload=Enhanced_RecaptchaCallback&render=explicit", array('jquery'), false, true );
+				wp_enqueue_script  ( 'Enhanced_Comment_Validation_recaptcha_call' );
 			}
-			
-			$final_array_data = array_merge($validation_form_array, $get_validation_option,$get_Enhanced_Comment_Validation_form_input);
-			
-			 
-			if( isset( $get_validation_option['_enable'] )  ?  $get_validation_option['_enable'] : '' ):
-				wp_localize_script( 'input-validation', 'form_obj', $final_array_data );					
-			endif;
-			
-			// reCAPTCHA Google script			
-			wp_register_script ( 'Enhanced_Comment_Validation_recaptcha_call', Enhanced_RECAPTCHA_SHOW . "onload=Enhanced_RecaptchaCallback&render=explicit", array('jquery'), false, true );
-			wp_enqueue_script  ( 'Enhanced_Comment_Validation_recaptcha_call' );
 			 
 		}
 	}
