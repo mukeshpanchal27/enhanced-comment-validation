@@ -3,7 +3,10 @@
  * included in this file.
  */
 
- #commentform .error { border-color: blue;}
-form#commentform div.error {
-   color: blue;
+body:not(.enhanced_comment_validation_style2) #commentform .validation-error {
+	border-color: #ff0202;
+}
+
+#commentform .validation-error-message {
+	color: #ff0202;
 }

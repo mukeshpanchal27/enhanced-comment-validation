@@ -38,9 +38,9 @@ class Enhanced_Comment_Validation_Activator {
 			$default_options = array(
 				'_enable_validation' => 'yes',
 				'_message_style' => 'style1',
-				'_enable_name' => 'yes',
+				'_enable_author' => 'yes',
 				'_enable_email' => 'yes',
-				'_name_message' => __( 'Please enter your name', 'enhanced-comment-validation' ),
+				'_author_message' => __( 'Please enter your name', 'enhanced-comment-validation' ),
 				'_email_message' => __( 'Please enter your email', 'enhanced-comment-validation' ),
 
 			);

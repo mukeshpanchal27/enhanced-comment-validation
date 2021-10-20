@@ -101,48 +101,60 @@ class Enhanced_Comment_Validation_Public {
 		 * class.
 		 */
 		
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-public.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( 'jquery-validate', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery' ), $this->version, false );	
 		
-		if( is_single() && comments_open() ){
+		if( ( is_single() || is_page() ) && comments_open() ) {
 			
 			$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
 			
 			if ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_validation'] ) {
 
-				wp_enqueue_script( 'input-validation', plugin_dir_url( __FILE__ ) . 'js/input-validation.js', array( 'jquery' ), $this->version, false );
+				wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-public.js', array( 'jquery' ), $this->version, false );
 
-				$_comment_message = $_name_message = $_email_message = $_website_message = '';
+				$_enable_comment = $_comment_message = $_enable_author = $_author_message = $_enable_email = $_email_message = $_enable_website = $_website_message = $_message_style = '';
 
 				if ( isset( $enhanced_comment_validation_settings['_enable_comment'] ) && $enhanced_comment_validation_settings['_enable_comment'] === 'yes' ) {
+					$_enable_comment = 'yes';
 					if ( isset( $enhanced_comment_validation_settings['_comment_message'] ) && $enhanced_comment_validation_settings['_comment_message'] !== '' ) {
 						$_comment_message = $enhanced_comment_validation_settings['_comment_message']; 
 					}
 				}
 
-				if ( isset( $enhanced_comment_validation_settings['_enable_name'] ) && $enhanced_comment_validation_settings['_enable_name'] === 'yes' ) {
-					if ( isset( $enhanced_comment_validation_settings['_name_message'] ) && $enhanced_comment_validation_settings['_name_message'] !== '' ) {
-						$_name_message = $enhanced_comment_validation_settings['_name_message']; 
+				if ( isset( $enhanced_comment_validation_settings['_enable_author'] ) && $enhanced_comment_validation_settings['_enable_author'] === 'yes' ) {
+					$_enable_author = 'yes';
+					if ( isset( $enhanced_comment_validation_settings['_author_message'] ) && $enhanced_comment_validation_settings['_author_message'] !== '' ) {
+						$_author_message = $enhanced_comment_validation_settings['_author_message']; 
 					}
 				}
 
 				if ( isset( $enhanced_comment_validation_settings['_enable_email'] ) && $enhanced_comment_validation_settings['_enable_email'] === 'yes' ) {
+					$_enable_email = 'yes';
 					if ( isset( $enhanced_comment_validation_settings['_email_message'] ) && $enhanced_comment_validation_settings['_email_message'] !== '' ) {
 						$_email_message = $enhanced_comment_validation_settings['_email_message']; 
 					}
 				}
 
 				if ( isset( $enhanced_comment_validation_settings['_enable_website'] ) && $enhanced_comment_validation_settings['_enable_website'] === 'yes' ) {
+					$_enable_website = 'yes';
 					if ( isset( $enhanced_comment_validation_settings['_website_message'] ) && $enhanced_comment_validation_settings['_website_message'] !== '' ) {
 						$_website_message = $enhanced_comment_validation_settings['_website_message']; 
 					}
 				}
-						
-				wp_localize_script( $this->plugin_name, 'form_obj',
-					array( 
+				
+				/* Check validation style */
+				if ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ! empty( $enhanced_comment_validation_settings['_message_style'] ) ) {
+					$_message_style = $enhanced_comment_validation_settings['_message_style'];
+				}
+
+				wp_localize_script( $this->plugin_name, 'enhanced_comment_form_validation',
+					array(
+						'_message_style'	=> $_message_style,
+						'_enable_comment'	=> $_enable_comment,
 						'_comment_message' 	=> $_comment_message,
-						'_name_message' 	=> $_name_message,
+						'_enable_author'	=> $_enable_author,
+						'_author_message' 	=> $_author_message,
+						'_enable_email'		=> $_enable_email,
 						'_email_message' 	=> $_email_message,
+						'_enable_website'	=> $_enable_website,
 						'_website_message' 	=> $_website_message
 					)
 				);
@@ -153,6 +165,19 @@ class Enhanced_Comment_Validation_Public {
 			}
 			 
 		}
+	}
+
+	public function body_classes( $classes ) {
+		if( ( is_single() || is_page() ) && comments_open() ) {
+			
+			$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+			if ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_validation'] ) {
+				if ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ! empty( $enhanced_comment_validation_settings['_message_style'] ) ) {
+					$classes[] = 'enhanced_comment_validation_'.$enhanced_comment_validation_settings['_message_style'];
+				}
+			}
+		}
+		return $classes;
 	}
 
 	// create custom fields
