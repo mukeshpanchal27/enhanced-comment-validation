@@ -108,15 +108,13 @@ class Enhanced_Comment_Validation_Admin {
 			</div>
 
 			<form method="post" class="enhanced-comment-validation-form" action="options.php">
-				<table>
+				<?php 
+
+					settings_fields( 'enhanced_comment_validation_settings' );	
+					$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+				?>
+				<table<?php echo ( 'google_captcha' !== $current_tab ) ? ' class="hidden"' : ''; ?>>
 					<tbody>
-					<?php 
-
-						settings_fields( 'enhanced_comment_validation_settings' );	
-						$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
-
-						if( 'google_captcha' === $current_tab ) {
-					?>
 						<tr>
 							<td>
 								<label class="enhanced-comment-validation-switch">
@@ -155,9 +153,10 @@ class Enhanced_Comment_Validation_Admin {
 									value="<?php echo ( isset( $enhanced_comment_validation_settings['google_captcha_secret_key'] ) ) ?  $enhanced_comment_validation_settings['google_captcha_secret_key'] : ''; ?>">
 							</td>
 						</tr> -->
-					<?php 
-					} else {
-					?>
+					</tbody>
+				</table>
+				<table<?php echo ( 'google_captcha' === $current_tab ) ? ' class="hidden"' : ''; ?>>
+					<tbody>
 						<tr>
 							<td>
 								<label class="enhanced-comment-validation-switch">
@@ -262,10 +261,9 @@ class Enhanced_Comment_Validation_Admin {
 								</ul>
 							</td>
 						</tr>
-					<?php } ?>
-				</tbody>
-			</table>
-			<?php submit_button( 'Save Changes', 'enhanced-comment-validation' ); ?>
+					</tbody>
+				</table>
+				<?php submit_button( 'Save Changes', 'enhanced-comment-validation' ); ?>
 			</form>
 		</div>
 

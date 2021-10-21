@@ -174,6 +174,7 @@ class Enhanced_Comment_Validation {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_filter( 'body_class', $plugin_public, 'body_classes' );
+		$this->loader->add_filter( 'comment_form_default_fields', $plugin_public, 'comment_form_fields' );
 
 	}
 

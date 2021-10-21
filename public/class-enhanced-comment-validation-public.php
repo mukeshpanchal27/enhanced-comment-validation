@@ -51,8 +51,6 @@ class Enhanced_Comment_Validation_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		add_filter('comment_form_default_fields', [$this,'Enhanced_Comment_Validation_custom_fields']);
-		add_action( 'comment_post', [$this,'Enhanced_Comment_Validation_save_comment_meta_data'] );	
 
 		if ( !defined( 'Enhanced_RECAPTCHA_SHOW' ) ) {
 			define( 'Enhanced_RECAPTCHA_SHOW', 	'https://www.google.com/recaptcha/api.js?' );
@@ -180,31 +178,22 @@ class Enhanced_Comment_Validation_Public {
 		return $classes;
 	}
 
-	// create custom fields
-	public function Enhanced_Comment_Validation_custom_fields($fields) {
+	public function comment_form_fields( $fields ) {
 	
-		$commenter = wp_get_current_commenter();		
-		$get_Enhanced_Comment_Validation_form_input=  get_option('Enhanced_Comment_Validation_form_input' );
-		
-		$featured = isset($get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha']) && $get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha'] == 1 ? 'invisible' : '';
-	
-		// recaptcha
-		if( isset( $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] )  ?  $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] : '' ){
-			$fields['captcha'] = '<p>
-						<div class="g-recaptcha" id="comment_form_recaptcha"  data-size="'.$featured.'"></div>						
-					</p>';
+		$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+		if ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_validation'] ) {
+			
+			if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_captcha'] ) {
+
+				$featured = isset($get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha']) && $get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha'] == 1 ? 'invisible' : '';
+				if( isset( $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] )  ?  $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] : '' ){
+					$fields['captcha'] = '<p>
+								<div class="g-recaptcha" id="comment_form_recaptcha"  data-size="'.$featured.'"></div>						
+							</p>';
+				}
+			}
 		}
 		return $fields;
-	}
-
-	// save custom field data 
-	public function Enhanced_Comment_Validation_save_comment_meta_data( $comment_id ) {
-		$get_input = get_option( 'Enhanced_Comment_Validation_form_input' );
-
-		if( isset( $get_input['custom_input'] ) && $get_input['custom_input'] != '' ){
-			add_comment_meta( $comment_id, $get_input['custom_input'] , $_POST[ $get_input['custom_input'] ] );
-		}
-		
 	}
 
 }
