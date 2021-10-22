@@ -52,10 +52,13 @@ class Enhanced_Comment_Validation_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		// if ( !defined( 'enhanced_comment_validation' ) ) {
+		// 	define( 'enhanced_comment_validation', 	'https://www.google.com/recaptcha/api.js?' );
+		// }
+		
 		if ( !defined( 'Enhanced_RECAPTCHA_SHOW' ) ) {
 			define( 'Enhanced_RECAPTCHA_SHOW', 	'https://www.google.com/recaptcha/api.js?' );
 		}
-		
 	}
 
 	/**
@@ -101,12 +104,15 @@ class Enhanced_Comment_Validation_Public {
 		
 		
 		if( ( is_single() || is_page() ) && comments_open() ) {
-			
+					
 			$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+
 			
 			if ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_validation'] ) {
 
 				wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-public.js', array( 'jquery' ), $this->version, false );
+
+
 
 				$_enable_comment = $_comment_message = $_enable_author = $_author_message = $_enable_email = $_email_message = $_enable_website = $_website_message = $_message_style = '';
 
@@ -143,6 +149,13 @@ class Enhanced_Comment_Validation_Public {
 					$_message_style = $enhanced_comment_validation_settings['_message_style'];
 				}
 
+				/* Check google_captcha_site_key */		
+				$google_captcha_site_key = isset( $enhanced_comment_validation_settings['google_captcha_site_key'] ) ? $enhanced_comment_validation_settings['google_captcha_site_key'] : false ;
+
+				$_enable_captcha = isset( $enhanced_comment_validation_settings['_enable_captcha'] ) ? $enhanced_comment_validation_settings['_enable_captcha'] : false ;
+
+				$_enable_invisible_captcha = isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ? $enhanced_comment_validation_settings['_enable_invisible_captcha'] : false ;
+
 				wp_localize_script( $this->plugin_name, 'enhanced_comment_form_validation',
 					array(
 						'_message_style'	=> $_message_style,
@@ -153,15 +166,21 @@ class Enhanced_Comment_Validation_Public {
 						'_enable_email'		=> $_enable_email,
 						'_email_message' 	=> $_email_message,
 						'_enable_website'	=> $_enable_website,
-						'_website_message' 	=> $_website_message
+						'_website_message' 	=> $_website_message,
+						'_google_captcha_site_key'=> $google_captcha_site_key,
+						'_enable_captcha'=> $_enable_captcha,
+						'_enable_invisible_captcha'=> $_enable_invisible_captcha 
 					)
 				);
-			
-				// reCAPTCHA Google script			
-				wp_register_script ( 'Enhanced_Comment_Validation_recaptcha_call', Enhanced_RECAPTCHA_SHOW . "onload=Enhanced_RecaptchaCallback&render=explicit", array('jquery'), false, true );
-				wp_enqueue_script  ( 'Enhanced_Comment_Validation_recaptcha_call' );
-			}
-			 
+
+				if( !is_user_logged_in() ){
+					if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && $enhanced_comment_validation_settings['_enable_captcha'] === 'yes' ) {		
+						if( $google_captcha_site_key ){
+							wp_enqueue_script( 'g-recaptcha-v2', 'https://www.google.com/recaptcha/api.js?onload=custom&render=explicit', false );	
+						}					
+					}
+				}			
+			}			
 		}
 	}
 
@@ -185,12 +204,11 @@ class Enhanced_Comment_Validation_Public {
 			
 			if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_captcha'] ) {
 
-				$featured = isset($get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha']) && $get_Enhanced_Comment_Validation_form_input['_enable_invisible_captcha'] == 1 ? 'invisible' : '';
-				if( isset( $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] )  ?  $get_Enhanced_Comment_Validation_form_input['_enable_captcha'] : '' ){
-					$fields['captcha'] = '<p>
-								<div class="g-recaptcha" id="comment_form_recaptcha"  data-size="'.$featured.'"></div>						
-							</p>';
-				}
+
+				$featured = isset($enhanced_comment_validation_settings['_enable_invisible_captcha']) && $enhanced_comment_validation_settings['_enable_invisible_captcha'] == 'yes' ? 'invisible' : '';
+
+				$fields['captcha'] = '<div class="g-recaptcha" id="comment_form_recaptcha" data-size="'.$featured.'"></div>
+					<input type="hidden" class="hiddenRecaptcha required" name="hidden_recaptcha_comment" id="hidden_recaptcha_comment">';
 			}
 		}
 		return $fields;
