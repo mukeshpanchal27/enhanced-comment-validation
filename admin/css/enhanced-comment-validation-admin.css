@@ -3,6 +3,21 @@
 * included in this file.
 */
 
+
+/* site key message show  */
+
+li.hidden.enhanced-comment-validation-invisible-captcha {
+    position: relative;
+    left: 80px;
+}
+
+span.validation-error-message.validation-comment-error-message.validation-error {
+   width:200px;
+    color: red;
+    font-size: 15px;
+    padding-top: 15px;
+}
+
 /* input swtch start*/
 .enhanced-comment-validation-lable-input-switch {
 	border-bottom: 1px solid azure;

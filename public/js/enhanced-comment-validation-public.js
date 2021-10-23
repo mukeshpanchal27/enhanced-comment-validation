@@ -15,7 +15,7 @@
 				_commentFormCaptcha = _currentForm.find( 'input[name="hidden_recaptcha_comment"]' ),
 				_commentMessageStyle = enhanced_comment_form_validation._message_style;
 
-			console.log(enhanced_comment_form_validation._enable_invisible_captcha);
+			// console.log(enhanced_comment_form_validation._enable_invisible_captcha);
 
 			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha ==!'yes' ) {
 				
@@ -38,8 +38,6 @@
 
 				}
 			}
-
-
 
 			if ( _commentFormComment.length == 1 && enhanced_comment_form_validation._enable_comment == 'yes' ) {
 				if ( _commentFormComment.val().length == 0 || _commentFormComment.val().value == '' ) {

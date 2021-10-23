@@ -174,7 +174,9 @@ class Enhanced_Comment_Validation_Public {
 				);
 
 				if( !is_user_logged_in() ){
-					if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && $enhanced_comment_validation_settings['_enable_captcha'] === 'yes' ) {		
+					
+					if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && $enhanced_comment_validation_settings['_enable_captcha'] === 'yes' ) {	
+
 						if( $google_captcha_site_key ){
 							wp_enqueue_script( 'g-recaptcha-v2', 'https://www.google.com/recaptcha/api.js?onload=custom&render=explicit', false );	
 						}					
@@ -204,8 +206,18 @@ class Enhanced_Comment_Validation_Public {
 			
 			if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_captcha'] ) {
 
+				$captcha_version = isset( $enhanced_comment_validation_settings['_captcha_version'] ) ? $enhanced_comment_validation_settings['_captcha_version'] : '';
 
-				$featured = isset($enhanced_comment_validation_settings['_enable_invisible_captcha']) && $enhanced_comment_validation_settings['_enable_invisible_captcha'] == 'yes' ? 'invisible' : '';
+				$enable_invisible_captcha = isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ? $enhanced_comment_validation_settings['_enable_invisible_captcha'] : '';
+
+			
+
+				if( $captcha_version === 'v3' || $enable_invisible_captcha ){
+					$featured = 'invisible';
+				}else{
+					$featured="";
+				}
+			
 
 				$fields['captcha'] = '<div class="g-recaptcha" id="comment_form_recaptcha" data-size="'.$featured.'"></div>
 					<input type="hidden" class="hiddenRecaptcha required" name="hidden_recaptcha_comment" id="hidden_recaptcha_comment">';

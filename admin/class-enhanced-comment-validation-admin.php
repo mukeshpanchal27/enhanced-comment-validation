@@ -126,33 +126,57 @@ class Enhanced_Comment_Validation_Admin {
 								</label>
 							</td>
 						</tr>
+						
 						<tr>
-							<td>
-								<label class="enhanced-comment-validation-switch">
-									<input type="checkbox" class="checkbox"  name="enhanced_comment_validation_settings[_enable_invisible_captcha]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ) ? ' checked="checked"' : ''; ?>>
-									<div class="enhanced-comment-validation-slider"></div>
-								</label>
-								<label for="" class="enhanced-comment-validation-switch-lable">
-									<?php _e( 'Enable Invisible Captcha', 'enhanced-comment-validation' ); ?>
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<td class="enhanced-comment-validation-input-section">
-								<label for="" class="enhanced-comment-validation-lable-input-new-commet">
-									<?php _e( 'Site Key','enhanced_comment_validation' ); ?>
-								</label>
-								<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[google_captcha_site_key]" placeholder="Enter Name" value="<?php echo ( isset( $enhanced_comment_validation_settings['google_captcha_site_key'] ) ) ?  $enhanced_comment_validation_settings['google_captcha_site_key'] : ''; ?>">
+							<td class="enhanced-comment-validation-radio-ul">
+								<ul>
+									<li class="enhanced-comment-validation-radio-li">
+										<input type="radio" class="enhanced-comment-validation-recaptcha-v2 enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_version]" id="enhanced-comment-validation-style1" value="v2" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_version'] ) && ( "v2" === $enhanced_comment_validation_settings['_captcha_version'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-style1" class="enhanced-comment-validation-radio-label"><?php _e( 'recaptcha v2' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
+									</li>
+
+									<li class="hidden enhanced-comment-validation-invisible-captcha">
+										<label class="enhanced-comment-validation-switch">
+											<input type="checkbox" class="checkbox enhanced-comment-validation-invisible-captcha-checkbox"  name="enhanced_comment_validation_settings[_enable_invisible_captcha]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ) ? ' checked="checked"' : ''; ?>>
+											<div class="enhanced-comment-validation-slider"></div>
+										</label>
+										<label for="" class="enhanced-comment-validation-switch-lable">
+											<?php _e( 'Enable Invisible Captcha', 'enhanced-comment-validation' ); ?>
+										</label>
+									</li>
+
+									<li class="enhanced-comment-validation-radio-li">
+										<input type="radio" class="enhanced-comment-validation-recaptcha-v3
+										enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_version]" id="enhanced-comment-validation-style2" value="v3" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_version'] ) && ( "v3" === $enhanced_comment_validation_settings['_captcha_version'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-style2" class="enhanced-comment-validation-radio-label"><?php _e( 'recaptcha v3', 'enhanced-comment-validation' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
+									</li>
+								</ul>
 							</td>
 						</tr>
 
-						<!-- <tr>
+						<tr>
 							<td class="enhanced-comment-validation-input-section">
-								<label for="" class="enhanced-comment-validation-lable-input-new-commet"> <?php _e( 'Secret Key' ,'enhanced_comment_validation'); ?> </label>
-								<input style="width: 30em !important;" type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[google_captcha_secret_key]" placeholder="Enter Name"
-									value="<?php echo ( isset( $enhanced_comment_validation_settings['google_captcha_secret_key'] ) ) ?  $enhanced_comment_validation_settings['google_captcha_secret_key'] : ''; ?>">
+								<label for="" class="
+								enhanced-comment-validation-lable-input-new-commet">
+									<?php _e( 'Site Key','enhanced_comment_validation' ); ?>
+								</label>
+								<input type="text" class="
+								enhanced-comment-validation-lable-input-site-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[google_captcha_site_key]" placeholder="Enter Name" value="<?php echo ( isset( $enhanced_comment_validation_settings['google_captcha_site_key'] ) ) ?  $enhanced_comment_validation_settings['google_captcha_site_key'] : ''; ?>">
 							</td>
-						</tr> -->
+						</tr>
+
+						<tr>
+							<td class="enhanced-comment-validation-input-section">
+								<label for="" class="
+								enhanced-comment-validation-lable-input-new-commet">
+									<?php _e( 'Secret Key','enhanced_comment_validation' ); ?>
+								</label>
+								<input type="text" class="
+								enhanced-comment-validation-lable-input-site-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[google_captcha_secret_key]" placeholder="Enter Name" value="<?php echo ( isset( $enhanced_comment_validation_settings['google_captcha_secret_key'] ) ) ?  $enhanced_comment_validation_settings['google_captcha_secret_key'] : ''; ?>">
+							</td>
+						</tr>					
 					</tbody>
 				</table>
 				<table<?php echo ( 'google_captcha' === $current_tab ) ? ' class="hidden"' : ''; ?>>
