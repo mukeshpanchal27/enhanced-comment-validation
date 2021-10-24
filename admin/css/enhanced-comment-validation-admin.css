@@ -6,9 +6,14 @@
 
 /* site key message show  */
 
-li.hidden.enhanced-comment-validation-invisible-captcha {
-    position: relative;
-    left: 80px;
+.enhanced-comment-validation-captcha {
+	max-width: 90%;
+	width: 800px;
+}
+
+.enhanced-comment-validation-invisible-captcha {
+    float: left;
+    margin-left: 80px;
 }
 
 span.validation-error-message.validation-comment-error-message.validation-error {

@@ -1,4 +1,3 @@
-
 (function( $ ) {
 	'use strict';
 	
@@ -15,15 +14,12 @@
 				_commentFormCaptcha = _currentForm.find( 'input[name="hidden_recaptcha_comment"]' ),
 				_commentMessageStyle = enhanced_comment_form_validation._message_style;
 
-			// console.log(enhanced_comment_form_validation._enable_invisible_captcha);
-
-			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha ==!'yes' ) {
+			/*if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' ) {
 				
-				console.log("ok");
-				if (grecaptcha.getResponse() == '') {								
-	            	_commentFormCaptcha.after( '<span  class="validation-error-message validation-comment-error-message">Please check the box to prove that you are not a robot.</span>' );
-	           	} 					          
-			}
+				if (grecaptcha.getResponse() == '') {
+					_commentFormCaptcha.after( '<span  class="validation-error-message validation-comment-error-message">Please check the box to prove that you are not a robot.</span>' );
+				}
+			}*/
 
 			if ( _commentFormComment.length == 1 && enhanced_comment_form_validation._enable_comment == 'yes' ) {
 				if ( _commentFormComment.val().length == 0 || _commentFormComment.val().value == '' ) {
@@ -128,12 +124,13 @@
 
 })( jQuery );
 
-
-
-if(enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._google_captcha_site_key !== null){
-	var custom = function() {
-		grecaptcha.render('comment_form_recaptcha', {
-			'sitekey' :enhanced_comment_form_validation._google_captcha_site_key
-		});
-	};
+/* reCAPTCHA callback function */
+var enhanced_comment_validation_callback = function() {
+	if ( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._site_key ) {
+		if ( document.getElementById( 'enhanced_comment_form_recaptcha' ) ) {
+			grecaptcha.render( 'enhanced_comment_form_recaptcha', {
+				'sitekey' :enhanced_comment_form_validation._site_key
+			});
+		}
+	}
 }
