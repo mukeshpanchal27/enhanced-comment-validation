@@ -19,18 +19,20 @@
 				console.log( enhanced_comment_form_validation._validation_message_v2 );
 			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' ) {
 				
-				if (grecaptcha.getResponse() == '' && _currentForm.find( '.validation-v-error-message' ).length == 0 ) {
-					_commentFormCaptcha.after( '<span  class="reCAPTCHA-hide validation-error-message validation-v-error-message">'+enhanced_comment_form_validation._validation_message_v2+'</span>' );
-				}else if( grecaptcha.getResponse() !== '' ){
-					$('.reCAPTCHA-hide').remove();
+				if ( grecaptcha.getResponse() == '' ) {
+					_commentFormFields = '1';
+					if ( _currentForm.find( '.validation-v-error-message' ).length == 0 ) {
+						_commentFormCaptcha.after( '<span class="validation-error-message validation-v-error-message">'+enhanced_comment_form_validation._validation_message_v2+'</span>' );
+					}
+				} else {
+					$( '.validation-v-error-message' ).remove();
 				}
+				
 			}
-
-		
 
 			if ( _commentFormComment.length == 1 && enhanced_comment_form_validation._enable_comment == 'yes' ) {
 				if ( _commentFormComment.val().length == 0 || _commentFormComment.val().value == '' ) {
-					_commentFormFields ='1';
+					_commentFormFields = '1';
 					_commentFormComment.addClass( 'validation-error' );
 					
 					if ( _commentMessageStyle != 'style1' && _currentForm.find( '.validation-comment-error-message' ).length == 0 ) {
@@ -44,7 +46,7 @@
 
 			if ( _commentFormComment.length == 1 && enhanced_comment_form_validation._enable_comment == 'yes' ) {
 				if ( _commentFormComment.val().length == 0 || _commentFormComment.val().value == '' ) {
-					_commentFormFields ='1';
+					_commentFormFields = '1';
 					_commentFormComment.addClass( 'validation-error' );
 					
 					if ( _commentMessageStyle != 'style1' && _currentForm.find( '.validation-comment-error-message' ).length == 0 ) {
@@ -58,7 +60,7 @@
 
 			if ( _commentFormAuthor.length == 1 && enhanced_comment_form_validation._enable_author == 'yes' ) {
 				if ( _commentFormAuthor.val().length == 0 || _commentFormAuthor.val().value == '' ) {
-					_commentFormFields ='1';
+					_commentFormFields = '1';
 					_commentFormAuthor.addClass( 'validation-error' );
 
 					if ( _commentMessageStyle != 'style1' && _currentForm.find( '.validation-author-error-message' ).length == 0 ) {
@@ -71,7 +73,7 @@
 
 			if ( _commentFormUrl.length == 1 && enhanced_comment_form_validation._enable_website == 'yes' ) {
 				if ( _commentFormUrl.val().length == 0 || _commentFormUrl.val().value == '' ) {
-					_commentFormFields ='1';
+					_commentFormFields = '1';
 					_commentFormUrl.addClass( 'validation-error' );
 
 					if ( _commentMessageStyle != 'style1' && _currentForm.find( '.validation-website-error-message' ).length == 0 ) {
@@ -85,7 +87,7 @@
 			if ( _commentFormEmail.length == 1 && enhanced_comment_form_validation._enable_email == 'yes' ) {
 				var emailErrorFlag = false;
 				if ( _commentFormEmail.val().length == 0 || _commentFormEmail.val().length == '' ) {
-					_commentFormFields ='1';
+					_commentFormFields = '1';
 					_commentFormEmail.addClass( 'validation-error' );
 					emailErrorFlag = true;
 				} else {
@@ -94,7 +96,7 @@
 					var sinput = '';
 					sinput = _commentFormEmail.val();
 					if ( !re.test( sinput ) ) {
-						_commentFormFields ='1';
+						_commentFormFields = '1';
 						_commentFormEmail.addClass( 'validation-error' );
 						emailErrorFlag = true;
 					}

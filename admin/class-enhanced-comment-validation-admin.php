@@ -134,7 +134,7 @@ class Enhanced_Comment_Validation_Admin {
 										<label for="enhanced-comment-validation-recaptcha-v2" class="enhanced-comment-validation-radio-label"><?php _e( 'reCAPTCHA v2', 'enhanced-comment-validation' ); ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
-									<li class="enhanced-comment-validation-input-section enhanced-comment-validation-v2">
+									<li class="enhanced-comment-validation-v2 v2">
 										<label for="" class="enhanced-comment-validation-lable-input-new-commet">
 											<?php _e( 'Validation Message', 'enhanced_comment_validation' ); ?>
 										</label>

@@ -105,7 +105,7 @@ class Enhanced_Comment_Validation_Public {
 
 				wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-public.js', array( 'jquery' ), $this->version, false );
 
-				$_enable_comment = $_comment_message = $_enable_author = $_author_message = $_enable_email = $_email_message = $_enable_website = $_website_message = $_message_style = $_enable_captcha = $_site_key = $_enable_invisible_captcha = $_validation_message_v2= '';
+				$_enable_comment = $_comment_message = $_enable_author = $_author_message = $_enable_email = $_email_message = $_enable_website = $_website_message = $_message_style = $_enable_captcha = $_site_key = $_enable_invisible_captcha = $_validation_message_v2 = '';
 
 				if ( isset( $enhanced_comment_validation_settings['_enable_comment'] ) && $enhanced_comment_validation_settings['_enable_comment'] === 'yes' ) {
 					$_enable_comment = 'yes';
@@ -164,7 +164,7 @@ class Enhanced_Comment_Validation_Public {
 						$_enable_invisible_captcha = $enhanced_comment_validation_settings['_enable_invisible_captcha'];
 					}
 				}
-				
+
 
 				wp_localize_script( $this->plugin_name, 'enhanced_comment_form_validation',
 					array(

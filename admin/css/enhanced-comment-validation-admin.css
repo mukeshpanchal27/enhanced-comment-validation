@@ -29,7 +29,7 @@ span.validation-error-message.validation-comment-error-message.validation-error 
 
 
 .enhanced-comment-validation-v2{
-	display: block!important;
+	display: block;
 	margin-left: 12% !important;
 }
 .enhanced-comment-validation-v2 label{
