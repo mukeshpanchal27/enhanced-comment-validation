@@ -41,6 +41,7 @@ class Enhanced_Comment_Validation_Activator {
 				'_author_message' => __( 'Please enter your name', 'enhanced-comment-validation' ),
 				'_email_message' => __( 'Please enter your email', 'enhanced-comment-validation' ),
 				'_captcha_version' => 'v2',
+				'_validation_message_v2' =>'Google reCAPTCHA verification failed. The response parameter is invalid or malformed.',
 			);
 			update_option( 'enhanced_comment_validation_settings', $default_options );
 		}

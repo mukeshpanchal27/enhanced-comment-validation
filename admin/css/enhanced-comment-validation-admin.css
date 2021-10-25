@@ -1,4 +1,4 @@
-/**
+*
 * All of the CSS for your admin-specific functionality should be
 * included in this file.
 */
@@ -22,6 +22,24 @@ span.validation-error-message.validation-comment-error-message.validation-error 
     font-size: 15px;
     padding-top: 15px;
 }
+
+
+
+/* recaptch-v2 input */
+
+
+.enhanced-comment-validation-v2{
+	display: block!important;
+	margin-left: 12% !important;
+}
+.enhanced-comment-validation-v2 label{
+	display: block;
+}
+
+.enhanced-comment-validation-v2 .enhanced-comment-validation-form-input{
+	margin-left: 40% !important;
+	width: 70% !important;
+}	
 
 /* input swtch start*/
 .enhanced-comment-validation-lable-input-switch {
@@ -153,6 +171,7 @@ input:checked + .enhanced-comment-validation-slider:after {
 /*--------- END --------*/
 
 /* input text start */
+
 .enhanced-comment-validation-form .enhanced-comment-validation-form-input {
 	flex: 1 1 300px;
 	margin: 10px;
@@ -280,4 +299,4 @@ input:checked + .enhanced-comment-validation-slider:after {
 }
 
 
-/*----- End ----- */
+/*----- End ----- 

@@ -12,14 +12,21 @@
 				_commentFormUrl = _currentForm.find( 'input[name="url"]' ),
 				_commentFormEmail = _currentForm.find( 'input[name="email"]' ),
 				_commentFormCaptcha = _currentForm.find( 'input[name="hidden_recaptcha_comment"]' ),
-				_commentMessageStyle = enhanced_comment_form_validation._message_style;
 
-			/*if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' ) {
+				_commentMessageStyle = enhanced_comment_form_validation._message_style;
 				
-				if (grecaptcha.getResponse() == '') {
-					_commentFormCaptcha.after( '<span  class="validation-error-message validation-comment-error-message">Please check the box to prove that you are not a robot.</span>' );
+
+				console.log( enhanced_comment_form_validation._validation_message_v2 );
+			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' ) {
+				
+				if (grecaptcha.getResponse() == '' && _currentForm.find( '.validation-v-error-message' ).length == 0 ) {
+					_commentFormCaptcha.after( '<span  class="reCAPTCHA-hide validation-error-message validation-v-error-message">'+enhanced_comment_form_validation._validation_message_v2+'</span>' );
+				}else if( grecaptcha.getResponse() !== '' ){
+					$('.reCAPTCHA-hide').remove();
 				}
-			}*/
+			}
+
+		
 
 			if ( _commentFormComment.length == 1 && enhanced_comment_form_validation._enable_comment == 'yes' ) {
 				if ( _commentFormComment.val().length == 0 || _commentFormComment.val().value == '' ) {

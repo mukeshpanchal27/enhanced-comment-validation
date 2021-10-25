@@ -134,6 +134,12 @@ class Enhanced_Comment_Validation_Admin {
 										<label for="enhanced-comment-validation-recaptcha-v2" class="enhanced-comment-validation-radio-label"><?php _e( 'reCAPTCHA v2', 'enhanced-comment-validation' ); ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
+									<li class="enhanced-comment-validation-input-section enhanced-comment-validation-v2">
+										<label for="" class="enhanced-comment-validation-lable-input-new-commet">
+											<?php _e( 'Validation Message', 'enhanced_comment_validation' ); ?>
+										</label>
+										<input type="text" class=" enhanced-comment-validation-form-input"  name="enhanced_comment_validation_settings[_validation_message_v2]" value="<?php echo ( isset( $enhanced_comment_validation_settings['_validation_message_v2'] ) ) ?  $enhanced_comment_validation_settings['_validation_message_v2'] : ''; ?>">
+									</li>
 									<li class="enhanced-comment-validation-invisible-captcha">
 										<label class="enhanced-comment-validation-switch">
 											<input type="checkbox" class="checkbox enhanced-comment-validation-invisible-captcha-checkbox"  name="enhanced_comment_validation_settings[_enable_invisible_captcha]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ) ? 'checked="checked"' : ''; ?>>
@@ -156,7 +162,7 @@ class Enhanced_Comment_Validation_Admin {
 								<label for="" class="enhanced-comment-validation-lable-input-new-commet">
 									<?php _e( 'Site Key', 'enhanced_comment_validation' ); ?>
 								</label>
-								<input type="text" class="enhanced-comment-validation-lable-input-site-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_site_key]" value="<?php echo ( isset( $enhanced_comment_validation_settings['_site_key'] ) ) ?  $enhanced_comment_validation_settings['_site_key'] : ''; ?>">
+								<input type="text" class="enhanced-comment-validation-lable-input-site-key enhanced-comment-validation-form-input"  name="enhanced_comment_validation_settings[_site_key]" value="<?php echo ( isset( $enhanced_comment_validation_settings['_site_key'] ) ) ?  $enhanced_comment_validation_settings['_site_key'] : ''; ?>">
 							</td>
 						</tr>
 
