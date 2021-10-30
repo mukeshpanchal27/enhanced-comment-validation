@@ -1,12 +1,13 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: https://mukeshpanchal.com/
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+=== Enhanced Comment Validation ===
+Contributors: mukesh27
+Tags: validation, comment validation, comment form validation, Advance comment form validation, custom validation message, Google Captcha, recaptcha
+Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
+Requires at least: 5.6
+Tested up to: 5.8.1
+Requires PHP: 7.0
+Stable tag: 1.0.1
+License: GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
 Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
 

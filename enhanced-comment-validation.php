@@ -36,6 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'ENHANCED_COMMENT_VALIDATION_VERSION', '1.0.0' );
+define( 'ENHANCED_COMMENT_VALIDATION_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.

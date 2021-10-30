@@ -157,6 +157,7 @@ class Enhanced_Comment_Validation {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'enhanced_comment_validation_admin_menu_page' );
+		$this->loader->add_filter( 'plugin_action_links_' . ENHANCED_COMMENT_VALIDATION_BASENAME, $plugin_admin, 'add_plugin_action_links' );
 	}
 
 	/**
