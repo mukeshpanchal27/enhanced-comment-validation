@@ -230,17 +230,17 @@ class Enhanced_Comment_Validation_Admin {
 								<ul>
 									<li class="enhanced-comment-validation-radio-li">
 										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style1" value="style1" <?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ( "style1" === $enhanced_comment_validation_settings['_message_style'] ) ) ? 'checked="checked"' : ''; ?> />
-										<label for="enhanced-comment-validation-style1" class="enhanced-comment-validation-radio-label"><?php _e( 'Show border only', 'enhanced-comment-validation' ) ?></label>
+										<label for="enhanced-comment-validation-style1" class="enhanced-comment-validation-radio-label"><?php _e( 'Border only', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
 									<li class="enhanced-comment-validation-radio-li">
 										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style2" value="style2" <?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ( "style2" === $enhanced_comment_validation_settings['_message_style'] ) ) ? 'checked="checked"' : ''; ?> />
-										<label for="enhanced-comment-validation-style2" class="enhanced-comment-validation-radio-label"><?php _e( 'Show message only', 'enhanced-comment-validation' ) ?></label>
+										<label for="enhanced-comment-validation-style2" class="enhanced-comment-validation-radio-label"><?php _e( 'Message only', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
 									<li class="enhanced-comment-validation-radio-li">
 										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style3" value="style3" <?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ( "style3" === $enhanced_comment_validation_settings['_message_style'] ) ) ? 'checked="checked"' : ''; ?> />
-										<label for="enhanced-comment-validation-style3" class="enhanced-comment-validation-radio-label"><?php _e( 'Show message and border', 'enhanced-comment-validation' ) ?></label>
+										<label for="enhanced-comment-validation-style3" class="enhanced-comment-validation-radio-label"><?php _e( 'Border and Message both', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
 								</ul>
