@@ -50,6 +50,9 @@ If you find this plugin useful , please leave a good rating and consider checkin
 
 == Frequently Asked Questions ==
 
+= Does this plugin work with PHP 8? =
+Yes.
+
 = Is this plugin working with the latest WordPress versions? =
 
 Yes, It is compatible with the latest WordPress.
@@ -63,6 +66,16 @@ Yes, This plugin support reCAPTCHA Version 3, Version 2 with Invisible.
 
 = Can I use this plugin in my language? =
 Yes. this plugin is translated ready. But If your language is not available you can make one. If you want to help us to translate this plugin to your language you are welcome.
+
+= Where can I suggest a new feature or report a bug? =
+
+Please use [the issue tracker on Enhanced Comment Validation's GitHub repo](https://github.com/mukeshpanchal27/enhanced-comment-validation/issues) as it's easier to keep track of issues there, rather than on the wordpress.org support forums.
+
+= Do you accept donations? =
+
+[I am accepting sponsorships](https://www.paypal.com/paypalme/mukeshpanchal27) and any support you can give will help me maintain this plugin and keep it free for everyone.
+
+In addition, if you like the plugin then I'd love for you to leave a review. Tell all your friends about it too!
 
 == Screenshots ==
 
