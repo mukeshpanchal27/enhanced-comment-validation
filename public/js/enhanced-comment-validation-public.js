@@ -14,9 +14,7 @@
 				_commentFormCaptcha = _currentForm.find( 'input[name="hidden_recaptcha_comment"]' ),
 
 				_commentMessageStyle = enhanced_comment_form_validation._message_style;
-				
-
-				console.log( enhanced_comment_form_validation._validation_message_v2 );
+							
 			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' ) {
 				
 				if ( grecaptcha.getResponse() == '' ) {
