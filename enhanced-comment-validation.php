@@ -14,8 +14,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Enhanced Comment Validation
- * Plugin URI:        https://mukeshpanchal.com/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Enhanced Comment Validation plugin is an effective security solution that protects your WordPress comment form.
  * Version:           1.0.0
  * Author:            Mukesh Panchal
  * Author URI:        https://mukeshpanchal.com/

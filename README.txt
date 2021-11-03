@@ -9,7 +9,7 @@ Stable tag: 1.0.1
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Enhanced Comment Validation plugin is an effective security solution that protects your WordPress comment form.
 
 == Description ==
 
