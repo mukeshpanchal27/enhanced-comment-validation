@@ -212,10 +212,10 @@ class Enhanced_Comment_Validation_Public {
 
 				$data_size = '';
 				if( 'v3' === $_captcha_version || $enable_invisible_captcha ) {
-					$data_size = " data-size='invisible'";
+					$data_size = " data-size=invisible";
 				}
 			
-				$fields['captcha'] = '<p><span class="g-recaptcha" id="enhanced_comment_form_recaptcha"'.esc_attr( $data_size ).'"></span>
+				$fields['captcha'] = '<p><span class="g-recaptcha" id="enhanced_comment_form_recaptcha'.esc_attr( $data_size ).'></span>
 					<input type="hidden" class="hiddenRecaptcha required" name="hidden_recaptcha_comment" id="hidden_recaptcha_comment"></p>';
 			}
 		}
