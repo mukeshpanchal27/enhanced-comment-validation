@@ -103,11 +103,11 @@ class Enhanced_Comment_Validation_Admin {
 
 			<div class="enhanced-comment-validation-tabs">
 				<?php
-					$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : '';
+					$current_tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : '';
 					$first_tab_active = !isset( $_GET['tab'] ) ? ' nav-tab-active' : '';
 				?>
 				<nav class="nav-tab-wrapper  woo-nav-tab-wrapper">
-					<a class="nav-link nav-tab<?php echo $first_tab_active; ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation' ) ); ?>">
+					<a class="nav-link nav-tab<?php echo esc_attr( $first_tab_active ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation' ) ); ?>">
 						<?php _e( 'Settings', 'enhanced-comment-validation' ); ?>
 					</a>
 					<a class="nav-link nav-tab<?php echo 'google_captcha' === $current_tab ? ' nav-tab-active' : '' ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation&tab=google_captcha' ) ); ?>">
@@ -139,7 +139,7 @@ class Enhanced_Comment_Validation_Admin {
 						<tr>
 							<td>
 								<label class="enhanced-comment-validation-switch">
-									<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_captcha]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_captcha'] ) ) ? 'checked="checked"' : ''; ?> />
+									<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_captcha]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_captcha'] ) ) ? ' checked="checked"' : ''; ?> />
 									<div class="enhanced-comment-validation-slider"></div>
 								</label>
 								<label for="" class="enhanced-comment-validation-switch-lable">
@@ -157,19 +157,19 @@ class Enhanced_Comment_Validation_Admin {
 								?>
 								<ul class="enhanced-comment-validation-recaptcha-wrapper enhanced-comment-validation-top-space">
 									<li class="enhanced-comment-validation-radio-li">
-										<input type="radio" class="enhanced-comment-validation-recaptcha-v2 enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_version]" id="enhanced-comment-validation-recaptcha-v2" value="v2" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_version'] ) && ( "v2" === $enhanced_comment_validation_settings['_captcha_version'] ) ) ? 'checked="checked"' : ''; ?> />
+										<input type="radio" class="enhanced-comment-validation-recaptcha-v2 enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_version]" id="enhanced-comment-validation-recaptcha-v2" value="v2"<?php echo ( isset( $enhanced_comment_validation_settings['_captcha_version'] ) && "v2" === esc_attr( $enhanced_comment_validation_settings['_captcha_version'] ) ) ? ' checked="checked"' : ''; ?> />
 										<label for="enhanced-comment-validation-recaptcha-v2" class="enhanced-comment-validation-radio-label"><?php _e( 'reCAPTCHA v2', 'enhanced-comment-validation' ); ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
-									<li class="enhanced-comment-validation-center-alignment enhanced-comment-validation-left-space"<?php echo $enhanced_comment_validation_hide; ?>>
+									<li class="enhanced-comment-validation-center-alignment enhanced-comment-validation-left-space"<?php echo esc_attr( $enhanced_comment_validation_hide ); ?>>
 										<label for="" class="enhanced-comment-validation-lable-input-new-commet">
 											<?php _e( 'Validation Message', 'enhanced_comment_validation' ); ?>
 										</label>
-										<input type="text" class=" enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_validation_message_v2]" value="<?php echo ( isset( $enhanced_comment_validation_settings['_validation_message_v2'] ) ) ? $enhanced_comment_validation_settings['_validation_message_v2'] : ''; ?>">
+										<input type="text" class=" enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_validation_message_v2]" value="<?php echo isset( $enhanced_comment_validation_settings['_validation_message_v2'] ) ? esc_html( $enhanced_comment_validation_settings['_validation_message_v2'] ) : ''; ?>">
 									</li>
-									<li class="enhanced-comment-validation-left-space"<?php echo $enhanced_comment_validation_hide; ?>>
+									<li class="enhanced-comment-validation-left-space"<?php echo esc_attr( $enhanced_comment_validation_hide ); ?>>
 										<label class="enhanced-comment-validation-switch">
-											<input type="checkbox" class="checkbox enhanced-comment-validation-invisible-captcha-checkbox" name="enhanced_comment_validation_settings[_enable_invisible_captcha]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ) ? 'checked="checked"' : ''; ?>>
+											<input type="checkbox" class="checkbox enhanced-comment-validation-invisible-captcha-checkbox" name="enhanced_comment_validation_settings[_enable_invisible_captcha]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ) ? ' checked="checked"' : ''; ?>>
 											<div class="enhanced-comment-validation-slider"></div>
 										</label>
 										<label for="" class="enhanced-comment-validation-switch-lable">
@@ -177,7 +177,7 @@ class Enhanced_Comment_Validation_Admin {
 										</label>
 									</li>
 									<li class="enhanced-comment-validation-radio-li">
-										<input type="radio" class="enhanced-comment-validation-recaptcha-v3 enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_version]" id="enhanced-comment-validation-recaptcha-v3" value="v3" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_version'] ) && ( "v3" === $enhanced_comment_validation_settings['_captcha_version'] ) ) ? 'checked="checked"' : ''; ?> />
+										<input type="radio" class="enhanced-comment-validation-recaptcha-v3 enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_version]" id="enhanced-comment-validation-recaptcha-v3" value="v3"<?php echo ( isset( $enhanced_comment_validation_settings['_captcha_version'] ) && "v3" === esc_attr( $enhanced_comment_validation_settings['_captcha_version'] ) ) ? ' checked="checked"' : ''; ?> />
 										<label for="enhanced-comment-validation-recaptcha-v3" class="enhanced-comment-validation-radio-label"><?php _e( 'reCAPTCHA v3', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
@@ -191,13 +191,13 @@ class Enhanced_Comment_Validation_Admin {
 										<label for="" class="enhanced-comment-validation-lable-input-new-commet">
 											<?php _e( 'Site Key', 'enhanced_comment_validation' ); ?>
 										</label>
-										<input type="text" class="enhanced-comment-validation-lable-input-site-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_site_key]" value="<?php echo ( isset( $enhanced_comment_validation_settings['_site_key'] ) ) ? $enhanced_comment_validation_settings['_site_key'] : ''; ?>">
+										<input type="text" class="enhanced-comment-validation-lable-input-site-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_site_key]" value="<?php echo isset( $enhanced_comment_validation_settings['_site_key'] ) ? esc_html( $enhanced_comment_validation_settings['_site_key'] ) : ''; ?>">
 									</li>
 									<li class="enhanced-comment-validation-center-alignment">
 										<label for="" class="enhanced-comment-validation-lable-input-new-commet">
 											<?php _e( 'Secret Key', 'enhanced_comment_validation' ); ?>
 										</label>
-										<input type="text" class="enhanced-comment-validation-lable-input-secret-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_secret_key]" value="<?php echo ( isset( $enhanced_comment_validation_settings['_secret_key'] ) ) ? $enhanced_comment_validation_settings['_secret_key'] : ''; ?>">
+										<input type="text" class="enhanced-comment-validation-lable-input-secret-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_secret_key]" value="<?php echo isset( $enhanced_comment_validation_settings['_secret_key'] ) ? esc_html( $enhanced_comment_validation_settings['_secret_key'] ) : ''; ?>">
 									</li>
 								</ul>
 							</td>
@@ -214,7 +214,7 @@ class Enhanced_Comment_Validation_Admin {
 						<tr>
 							<td>
 								<label class="enhanced-comment-validation-switch">
-									<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_validation]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_validation'] ) ) ? 'checked="checked"' : ''; ?> />
+									<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_validation]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_validation'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_validation'] ) ) ? ' checked="checked"' : ''; ?> />
 									<div class="enhanced-comment-validation-slider"></div>
 								</label>
 								<label for="" class="enhanced-comment-validation-switch-lable" ><?php _e( 'Enable Comment Validation', 'enhanced-comment-validation' ); ?></label>
@@ -229,17 +229,17 @@ class Enhanced_Comment_Validation_Admin {
 							<td class="enhanced-comment-validation-radio-ul">
 								<ul>
 									<li class="enhanced-comment-validation-radio-li">
-										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style1" value="style1" <?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ( "style1" === $enhanced_comment_validation_settings['_message_style'] ) ) ? 'checked="checked"' : ''; ?> />
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style1" value="style1"<?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && "style1" === esc_attr( $enhanced_comment_validation_settings['_message_style'] ) ) ? ' checked="checked"' : ''; ?> />
 										<label for="enhanced-comment-validation-style1" class="enhanced-comment-validation-radio-label"><?php _e( 'Border only', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
 									<li class="enhanced-comment-validation-radio-li">
-										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style2" value="style2" <?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ( "style2" === $enhanced_comment_validation_settings['_message_style'] ) ) ? 'checked="checked"' : ''; ?> />
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style2" value="style2"<?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && "style2" === esc_attr( $enhanced_comment_validation_settings['_message_style'] ) ) ? ' checked="checked"' : ''; ?> />
 										<label for="enhanced-comment-validation-style2" class="enhanced-comment-validation-radio-label"><?php _e( 'Message only', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
 									<li class="enhanced-comment-validation-radio-li">
-										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style3" value="style3" <?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && ( "style3" === $enhanced_comment_validation_settings['_message_style'] ) ) ? 'checked="checked"' : ''; ?> />
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_message_style]" id="enhanced-comment-validation-style3" value="style3"<?php echo ( isset( $enhanced_comment_validation_settings['_message_style'] ) && "style3" === esc_attr( $enhanced_comment_validation_settings['_message_style'] ) ) ? ' checked="checked"' : ''; ?> />
 										<label for="enhanced-comment-validation-style3" class="enhanced-comment-validation-radio-label"><?php _e( 'Border and Message both', 'enhanced-comment-validation' ) ?></label>
 										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
@@ -256,14 +256,14 @@ class Enhanced_Comment_Validation_Admin {
 								<ul>
 									<li class="enhanced-comment-validation-lable-input-switch">
 										<label class="enhanced-comment-validation-switch">
-											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_comment]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_comment'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_comment'] ) ) ? 'checked="checked"' : ''; ?>>
+											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_comment]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_comment'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_comment'] ) ) ? ' checked="checked"' : ''; ?>>
 											<div class="enhanced-comment-validation-slider"></div>
 										</label>
 										<label for="" class="enhanced-comment-validation-switch-lable" ><?php _e( 'Enable Comment Validation', 'enhanced-comment-validation' ); ?></label>
 									</li>
 									<li class="enhanced-comment-validation-input-section">
 										<label for="" class="enhanced-comment-validation-lable-input-section"><?php _e( 'Comment', 'enhanced_comment_validation' ); ?></label>
-										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_comment_message]" placeholder="<?php _e( 'Please enter your comment', 'enhanced_comment_validation' ); ?>" value="<?php echo ( isset( $enhanced_comment_validation_settings['_comment_message'] ) ) ? $enhanced_comment_validation_settings['_comment_message'] : ''; ?>">
+										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_comment_message]" placeholder="<?php _e( 'Please enter your comment', 'enhanced_comment_validation' ); ?>" value="<?php echo isset( $enhanced_comment_validation_settings['_comment_message'] ) ? esc_html( $enhanced_comment_validation_settings['_comment_message'] ) : ''; ?>">
 									</li>
 								</ul>
 							</td>
@@ -273,14 +273,14 @@ class Enhanced_Comment_Validation_Admin {
 								<ul>
 									<li class="enhanced-comment-validation-lable-input-switch">
 										<label class="enhanced-comment-validation-switch">
-											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_author]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_author'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_author'] ) ) ? 'checked="checked"' : ''; ?>>
+											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_author]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_author'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_author'] ) ) ? ' checked="checked"' : ''; ?>>
 											<div class="enhanced-comment-validation-slider"></div>
 										</label>
 										<label for="" class="enhanced-comment-validation-switch-lable" ><?php _e( 'Enable Name Validation', 'enhanced-comment-validation' ); ?></label>
 									</li>
 									<li class="enhanced-comment-validation-input-section">
 										<label for="" class="enhanced-comment-validation-lable-input-section"><?php _e( 'Name','enhanced_comment_validation' ); ?></label>
-										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_author_message]" placeholder="<?php _e( 'Enter Name Validation Message', 'enhanced-comment-validation' ); ?>" value="<?php echo ( isset( $enhanced_comment_validation_settings['_author_message'] ) ) ? $enhanced_comment_validation_settings['_author_message'] : ''; ?>">
+										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_author_message]" placeholder="<?php _e( 'Enter Name Validation Message', 'enhanced-comment-validation' ); ?>" value="<?php echo isset( $enhanced_comment_validation_settings['_author_message'] ) ? esc_html( $enhanced_comment_validation_settings['_author_message'] ) : ''; ?>">
 									</li>
 								</ul>
 							</td>
@@ -290,14 +290,14 @@ class Enhanced_Comment_Validation_Admin {
 								<ul>
 									<li class="enhanced-comment-validation-lable-input-switch">
 										<label class="enhanced-comment-validation-switch">
-											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_email]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_email'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_email'] ) ) ? 'checked="checked"' : ''; ?>>
+											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_email]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_email'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_email'] ) ) ? ' checked="checked"' : ''; ?> />
 											<div class="enhanced-comment-validation-slider"></div>
 										</label>
 										<label for="" class="enhanced-comment-validation-switch-lable"><?php _e( 'Enable Email Validation', 'enhanced-comment-validation' ); ?></label>
 									</li>
 									<li class="enhanced-comment-validation-input-section">
 										<label for="" class="enhanced-comment-validation-lable-input-section"><?php _e( 'Email', 'enhanced_comment_validation' ); ?></label>
-										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_email_message]" placeholder="<?php _e( 'Enter Email Validation Message', 'enhanced-comment-validation' ); ?>" value="<?php echo ( isset( $enhanced_comment_validation_settings['_email_message'] ) ) ? $enhanced_comment_validation_settings['_email_message'] : ''; ?>">
+										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_email_message]" placeholder="<?php _e( 'Enter Email Validation Message', 'enhanced-comment-validation' ); ?>" value="<?php echo isset( $enhanced_comment_validation_settings['_email_message'] ) ? esc_html( $enhanced_comment_validation_settings['_email_message'] ) : ''; ?>" />
 									</li>
 								</ul>
 							</td>
@@ -307,14 +307,14 @@ class Enhanced_Comment_Validation_Admin {
 								<ul>
 									<li class="enhanced-comment-validation-lable-input-switch">
 										<label class="enhanced-comment-validation-switch">
-											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_website]" value="yes" <?php echo ( isset( $enhanced_comment_validation_settings['_enable_website'] ) && ( 'yes' === $enhanced_comment_validation_settings['_enable_website'] ) ) ? 'checked="checked"' : ''; ?> />
+											<input type="checkbox" class="checkbox" name="enhanced_comment_validation_settings[_enable_website]" value="yes"<?php echo ( isset( $enhanced_comment_validation_settings['_enable_website'] ) && 'yes' === esc_attr( $enhanced_comment_validation_settings['_enable_website'] ) ) ? ' checked="checked"' : ''; ?> />
 											<div class="enhanced-comment-validation-slider"></div>
 										</label>
 										<label for="" class="enhanced-comment-validation-switch-lable" ><?php _e( 'Enable Website Validation', 'enhanced-comment-validation' ); ?></label>
 									</li>
 									<li class="enhanced-comment-validation-input-section">
 										<label for="" class="enhanced-comment-validation-lable-input-section"><?php _e( 'Website', 'enhanced_comment_validation' ); ?></label>
-										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_website_message]" placeholder="<?php _e( 'Please enter your website', 'enhanced_comment_validation' ); ?>" value="<?php echo ( isset( $enhanced_comment_validation_settings['_website_message'] ) ) ? $enhanced_comment_validation_settings['_website_message'] : ''; ?>">
+										<input type="text" class="enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_website_message]" placeholder="<?php _e( 'Please enter your website', 'enhanced_comment_validation' ); ?>" value="<?php echo isset( $enhanced_comment_validation_settings['_website_message'] ) ? esc_html( $enhanced_comment_validation_settings['_website_message'] ) : ''; ?>">
 									</li>
 								</ul>
 							</td>
