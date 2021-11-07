@@ -70,7 +70,7 @@ class Enhanced_Comment_Validation_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/enhanced-comment-validation-admin.js', array( 'jquery' ), $this->version, true );
 
 	}
 
@@ -103,14 +103,14 @@ class Enhanced_Comment_Validation_Admin {
 
 			<div class="enhanced-comment-validation-tabs">
 				<?php
-					$current_tab = isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : '';
-					$first_tab_active = !isset( $_GET['tab'] ) ? ' nav-tab-active' : '';
+					$current_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : '';
+					$first_tab_active = !isset( $_GET['tab'] ) ? 'nav-tab-active' : '';
 				?>
 				<nav class="nav-tab-wrapper  woo-nav-tab-wrapper">
-					<a class="nav-link nav-tab<?php echo esc_attr( $first_tab_active ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation' ) ); ?>">
+					<a class="nav-link nav-tab <?php echo sanitize_key( $first_tab_active ); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation' ) ); ?>">
 						<?php _e( 'Settings', 'enhanced-comment-validation' ); ?>
 					</a>
-					<a class="nav-link nav-tab<?php echo 'google_captcha' === $current_tab ? ' nav-tab-active' : '' ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation&tab=google_captcha' ) ); ?>">
+					<a class="nav-link nav-tab <?php echo 'google_captcha' === $current_tab ? 'nav-tab-active' : '' ?>" href="<?php echo esc_url( admin_url( 'admin.php?page=enhanced-comment-validation&tab=google_captcha' ) ); ?>">
 						<?php _e( 'Google ReCAPTCHA', 'enhanced-comment-validation' ); ?>
 					</a>
 				</nav>
