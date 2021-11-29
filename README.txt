@@ -3,7 +3,7 @@ Contributors: mukesh27
 Tags: comment, validation, comment validation, form validation, advance validation, validation message, Google ReCaptcha, ReCaptcha, antispam, captcha, invisible ReCaptcha, spam
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Requires at least: 5.6
-Tested up to: 5.8.1
+Tested up to: 5.8.2
 Requires PHP: 7.0
 Stable tag: 1.0.0
 License: GPL-2.0+
@@ -42,6 +42,8 @@ If you find this plugin useful , please leave a good rating and consider checkin
 
 * <a href="https://wordpress.org/plugins/easy-maintenance-mode-by-wpkoder/" rel="friend" title="Easy Maintenance Mode">Easy Maintenance Mode</a> - Setup a Maintenance Mode for your website.
 
+* <a href="https://wordpress.org/plugins/landing-page-for-wc-categories-tags/" rel="friend" title="Landing page for WC Archive Pages">Landing page for WC Archive Pages</a> - allow you to add Rich text for your WooCommerce archive( Shop, Product Category, Product Tags ) pages.
+
 == Installation ==
 
 1. Install Enhanced Comment Validation by uploading the `enhanced-comment-validation` directory to the `/wp-content/plugins/` directory.
@@ -73,7 +75,7 @@ Please use [the issue tracker on Enhanced Comment Validation's GitHub repo](http
 
 = Do you accept donations? =
 
-[I am accepting sponsorships](https://www.paypal.com/paypalme/mukeshpanchal27) and any support you can give will help me maintain this plugin and keep it free for everyone.
+[I am accepting donation](https://www.paypal.com/paypalme/mukeshpanchal27) and any support you can give will help me maintain this plugin and keep it free for everyone.
 
 In addition, if you like the plugin then I'd love for you to leave a review. Tell all your friends about it too!
 
