@@ -1,5 +1,5 @@
 === Enhanced Comment Validation ===
-Contributors: mukesh27
+Contributors: mukesh27, dhavalpanchal
 Tags: comment, validation, comment validation, form validation, advance validation, validation message, Google ReCaptcha, ReCaptcha, antispam, captcha, invisible ReCaptcha, spam
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Requires at least: 5.6
@@ -87,10 +87,12 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 
 == Changelog ==
 
+= 1.0.1 =
+
 = 1.0.0 =
 * Initial version
 
 == Upgrade Notice ==
 
-= 1.0.0 =
+= 1.0.1 =
 * Initial version

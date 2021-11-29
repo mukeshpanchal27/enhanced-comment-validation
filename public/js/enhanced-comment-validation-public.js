@@ -136,7 +136,8 @@ var enhanced_comment_validation_callback = function() {
 	if ( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._site_key ) {
 		if ( document.getElementById( 'enhanced_comment_form_recaptcha' ) ) {
 			grecaptcha.render( 'enhanced_comment_form_recaptcha', {
-				'sitekey' :enhanced_comment_form_validation._site_key
+				'sitekey' :enhanced_comment_form_validation._site_key,
+				'theme': enhanced_comment_form_validation._captcha_theme
 			});
 		}
 	}

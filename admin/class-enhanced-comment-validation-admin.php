@@ -56,6 +56,25 @@ class Enhanced_Comment_Validation_Admin {
 	}
 
 	/**
+	 * Plugin update script.
+	 *
+	 * @since    1.0.1
+	 */
+	public function enhanced_comment_validation_update_plugin() {
+
+		$enhanced_comment_validation_settings = maybe_unserialize( get_option( 'enhanced_comment_validation_settings', false ) );
+		if ( !isset( $enhanced_comment_validation_settings['_captcha_theme'] ) && !empty( $enhanced_comment_validation_settings ) ) {
+			$enhanced_comment_validation_settings_new_elements = array();
+			$enhanced_comment_validation_settings_new_elements['_captcha_theme'] = 'light';
+			$enhanced_comment_validation_settings_new_elements['_captcha_invisible_badge'] = 'bottomright';
+
+			$enhanced_comment_validation_settings_final = array_merge( $enhanced_comment_validation_settings, $enhanced_comment_validation_settings_new_elements );
+			update_option( 'enhanced_comment_validation_settings', serialize( $enhanced_comment_validation_settings_final ) );
+		}
+		
+	}
+
+	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
@@ -150,9 +169,13 @@ class Enhanced_Comment_Validation_Admin {
 						<tr>
 							<td class="enhanced-comment-validation-radio-ul">
 								<?php
-									$enhanced_comment_validation_hide = '';
-									if ( "v3" === $enhanced_comment_validation_settings['_captcha_version'] ) {
+									$enhanced_comment_validation_hide = $enhanced_comment_validation_captcha_badge_hide = '';
+									if ( 'v3' === $enhanced_comment_validation_settings['_captcha_version'] ) {
 										$enhanced_comment_validation_hide = ' style="display:none;"';
+									}
+
+									if ( 'v3' === $enhanced_comment_validation_settings['_captcha_version'] || ( isset( $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_invisible_captcha'] ) ) {
+										$enhanced_comment_validation_captcha_badge_hide = ' style=display:block;';
 									}
 								?>
 								<ul class="enhanced-comment-validation-recaptcha-wrapper enhanced-comment-validation-top-space">
@@ -198,6 +221,49 @@ class Enhanced_Comment_Validation_Admin {
 											<?php _e( 'Secret Key', 'enhanced_comment_validation' ); ?>
 										</label>
 										<input type="text" class="enhanced-comment-validation-lable-input-secret-key enhanced-comment-validation-form-input" name="enhanced_comment_validation_settings[_secret_key]" value="<?php echo isset( $enhanced_comment_validation_settings['_secret_key'] ) ? esc_html( $enhanced_comment_validation_settings['_secret_key'] ) : ''; ?>">
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="enhanced-comment-validation-radio-ul">
+								<ul class="enhanced-comment-validation-recaptcha-wrapper enhanced-comment-validation-top-space">
+									<li class="enhanced-comment-validation-title">
+										<h2><?php _e( 'Recaptcha Theme', 'enhanced-comment-validation' ); ?></h2>
+									</li>
+									<li class="enhanced-comment-validation-radio-li enhanced-comment-validation-captcha_theme">
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_theme]" id="enhanced-comment-validation-light-theme" value="light" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_theme'] ) && "light" === esc_attr( $enhanced_comment_validation_settings['_captcha_theme'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-light-theme" class="enhanced-comment-validation-radio-label"><?php _e( 'Light', 'enhanced-comment-validation' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
+									</li>
+									<li class="enhanced-comment-validation-radio-li enhanced-comment-validation-captcha_theme">
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_theme]" id="enhanced-comment-validation-dark-theme" value="dark" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_theme'] ) && "dark" === esc_attr( $enhanced_comment_validation_settings['_captcha_theme'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-dark-theme" class="enhanced-comment-validation-radio-label"><?php _e( 'Dark', 'enhanced-comment-validation' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr class="enhanced-comment-validation-invisible-captcha_badge hidden" <?php echo esc_attr( $enhanced_comment_validation_captcha_badge_hide ); ?>>
+							<td class="enhanced-comment-validation-radio-ul">
+								<ul class="enhanced-comment-validation-recaptcha-wrapper enhanced-comment-validation-top-space">
+									<li class="enhanced-comment-validation-title-badge ">
+										<h2><?php _e( 'Badge Position', 'enhanced-comment-validation' ); ?></h2>
+									</li>
+									<li class="enhanced-comment-validation-radio-li">
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_invisible_badge]" id="enhanced-comment-validation-invisible-right" value="bottomright" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) && "bottomright" === esc_attr( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-invisible-right" class="enhanced-comment-validation-radio-label"><?php _e( 'Bottom Right', 'enhanced-comment-validation' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
+									</li>
+									<li class="enhanced-comment-validation-radio-li">
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_invisible_badge]" id="enhanced-comment-validation-invisible-left" value="bottomleft" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) && "bottomleft" === esc_attr( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-invisible-left" class="enhanced-comment-validation-radio-label"><?php _e( 'Bottom Left', 'enhanced-comment-validation' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
+									</li>
+									<li class="enhanced-comment-validation-radio-li">
+										<input type="radio" class="enhanced-comment-validation-radio-button" name="enhanced_comment_validation_settings[_captcha_invisible_badge]" id="enhanced-comment-validation-invisible-inline" value="inline" <?php echo ( isset( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) && "inline" === esc_attr( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) ) ? ' checked="checked"' : ''; ?> />
+										<label for="enhanced-comment-validation-invisible-inline" class="enhanced-comment-validation-radio-label"><?php _e( 'Inline', 'enhanced-comment-validation' ) ?></label>
+										<div class="enhanced-comment-validation-radio-check"></div>
 									</li>
 								</ul>
 							</td>

@@ -209,7 +209,7 @@ input:checked + .enhanced-comment-validation-slider:after {
 	display: block;
 	position: relative;
 	float: left;
-	width: 100%;
+	clear: both;
 }
 
 .enhanced-comment-validation-radio-ul .enhanced-comment-validation-radio-li .enhanced-comment-validation-radio-button{
