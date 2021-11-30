@@ -36,6 +36,9 @@ The plugin gave three options for the validation message.
 = Validation Option and Message Setting =
 The plugin has enabled/disabled options for Comment, Name, Email, and Website. For those fields, it allows adding custom validation messages.
 
+= Recaptcha Theme and Badge Position =
+Now you can set theme color for the Recaptcha and Badge position for Invisible Captcha and V3.
+
 = What's Next =
 
 If you find this plugin useful , please leave a good rating and consider checking out my other plugins:
