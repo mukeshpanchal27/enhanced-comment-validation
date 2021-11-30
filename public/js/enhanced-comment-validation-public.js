@@ -15,7 +15,7 @@
 
 				_commentMessageStyle = enhanced_comment_form_validation._message_style;
 							
-			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' ) {
+			if( enhanced_comment_form_validation._enable_captcha == 'yes' && enhanced_comment_form_validation._enable_invisible_captcha != 'yes' && enhanced_comment_form_validation._captcha_version == 'v2' ) {
 				
 				if ( grecaptcha.getResponse() == '' ) {
 					_commentFormFields = '1';

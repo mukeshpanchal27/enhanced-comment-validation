@@ -65,6 +65,8 @@ span.validation-error-message.validation-comment-error-message.validation-error 
 
 .enhanced-comment-validation-input-section{
 	display: flex;
+	min-width: 550px;
+	width: 100%
 }
 
 .enhanced-comment-validation-lable-input-new-commet {
@@ -99,7 +101,7 @@ span.validation-error-message.validation-comment-error-message.validation-error 
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #4d5051;
+	background-color: #1d2327;
 	-webkit-transition: .4s;
 	transition: .4s;
 	border-radius: 34px;
@@ -119,7 +121,7 @@ span.validation-error-message.validation-comment-error-message.validation-error 
 }
 
 input:checked + .enhanced-comment-validation-slider {
-	background-color: #6CE4F8;
+	background-color: #2271b1;
 }
 
 input:focus + .enhanced-comment-validation-slider {
@@ -168,7 +170,7 @@ input:checked + .enhanced-comment-validation-slider:after {
 }
 .enhanced-comment-validation-form .enhanced-comment-validation-form-input:hover,
 .enhanced-comment-validation-form .enhanced-comment-validation-form-input:focus {
-	outline: 3px solid #6CE4F8;
+	outline: 3px solid #2271b1;
 }
 /* -----End --------- */
 
@@ -236,7 +238,7 @@ input:checked + .enhanced-comment-validation-slider:after {
 .enhanced-comment-validation-radio-ul .enhanced-comment-validation-radio-li .enhanced-comment-validation-radio-check{
 	display: block;
 	position: absolute;
-	border: 5px solid #4d5051;
+	border: 5px solid #1d2327;
 	border-radius: 100%;
 	height: 25px;
 	width: 25px;
@@ -247,7 +249,7 @@ input:checked + .enhanced-comment-validation-slider:after {
 }
 
 .enhanced-comment-validation-radio-ul .enhanced-comment-validation-radio-li:hover .enhanced-comment-validation-radio-check {
-	border-color: #6CE4F8;
+	border-color: #2271b1;
 }
 
 .enhanced-comment-validation-radio-ul .enhanced-comment-validation-radio-li .enhanced-comment-validation-radio-check::before {
@@ -265,15 +267,15 @@ input:checked + .enhanced-comment-validation-slider:after {
 }
 
 .enhanced-comment-validation-radio-button:checked ~ .enhanced-comment-validation-radio-check {
-	border: 5px solid #6CE4F8;
+	border: 5px solid #2271b1;
 }
 
 .enhanced-comment-validation-radio-button:checked ~ .enhanced-comment-validation-radio-check::before{
-	background: #6CE4F8;
+	background: #2271b1;
 }
 
 .enhanced-comment-validation-radio-button:checked {
-	color: #6CE4F8;
+	color: #2271b1;
 }
 
 

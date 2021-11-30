@@ -88,6 +88,11 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 == Changelog ==
 
 = 1.0.1 =
+* New: Added Theme option for Recaptcha V2 and V3
+* New: Added Badge Position option for Invisible Captcha and V3
+* Update: Update plugin settings page color.
+* Fixed: Remove validation message for Recaptcha V3 
+* Fixed: Some minor fixes
 
 = 1.0.0 =
 * Initial version

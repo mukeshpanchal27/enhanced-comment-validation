@@ -142,10 +142,14 @@ class Enhanced_Comment_Validation_Public {
 
 				/* Check if google captcha enable or not */
 
+				$_captcha_version = 'v2';
+				
 				if ( isset( $enhanced_comment_validation_settings['_enable_captcha'] ) && 'yes' === $enhanced_comment_validation_settings['_enable_captcha'] ) {
 
 					$_enable_captcha = 'yes';
 					
+					$_captcha_version = isset( $enhanced_comment_validation_settings['_captcha_version'] ) && !empty( $enhanced_comment_validation_settings['_captcha_version'] ) ? $enhanced_comment_validation_settings['_captcha_version'] : '';
+
 					if ( isset( $enhanced_comment_validation_settings['_site_key'] ) && !empty( $enhanced_comment_validation_settings['_site_key'] ) ) {
 					
 						$_site_key = $enhanced_comment_validation_settings['_site_key'];
@@ -177,6 +181,7 @@ class Enhanced_Comment_Validation_Public {
 						'_enable_website'			=> sanitize_key( $_enable_website ),
 						'_website_message' 			=> sanitize_text_field( $_website_message ),
 						'_enable_captcha'			=> sanitize_key( $_enable_captcha ),
+						'_captcha_version'			=> sanitize_key( $_captcha_version ),
 						'_enable_invisible_captcha'	=> sanitize_key( $_enable_invisible_captcha ),
 						'_site_key'					=> sanitize_text_field( $_site_key ),
 						'_validation_message_v2'	=> sanitize_text_field( $_validation_message_v2 ),

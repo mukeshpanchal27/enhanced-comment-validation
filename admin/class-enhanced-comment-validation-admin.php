@@ -227,7 +227,7 @@ class Enhanced_Comment_Validation_Admin {
 						</tr>
 						<tr>
 							<td class="enhanced-comment-validation-radio-ul">
-								<ul class="enhanced-comment-validation-recaptcha-wrapper enhanced-comment-validation-top-space">
+								<ul class="enhanced-comment-validation-top-space">
 									<li class="enhanced-comment-validation-title">
 										<h2><?php _e( 'Recaptcha Theme', 'enhanced-comment-validation' ); ?></h2>
 									</li>
@@ -246,7 +246,7 @@ class Enhanced_Comment_Validation_Admin {
 						</tr>
 						<tr class="enhanced-comment-validation-invisible-captcha_badge hidden" <?php echo esc_attr( $enhanced_comment_validation_captcha_badge_hide ); ?>>
 							<td class="enhanced-comment-validation-radio-ul">
-								<ul class="enhanced-comment-validation-recaptcha-wrapper enhanced-comment-validation-top-space">
+								<ul class="enhanced-comment-validation-top-space">
 									<li class="enhanced-comment-validation-title-badge ">
 										<h2><?php _e( 'Badge Position', 'enhanced-comment-validation' ); ?></h2>
 									</li>
@@ -387,7 +387,7 @@ class Enhanced_Comment_Validation_Admin {
 						</tr>
 					</tbody>
 				</table>
-				<?php submit_button( 'Save Changes', 'enhanced-comment-validation' ); ?>
+				<?php submit_button( __( 'Save Changes', 'enhanced-comment-validation' ), 'primary large' ); ?>
 			</form>
 		</div>
 
