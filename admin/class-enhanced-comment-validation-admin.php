@@ -118,7 +118,7 @@ class Enhanced_Comment_Validation_Admin {
 		?>
 		<div class="wrap">
 
-			<h1><?php _e( 'Comment Validation', 'enhanced-comment-validation' ); ?></h1>
+			<h1><?php _e( 'Enhanced Comment Validation', 'enhanced-comment-validation' ); ?></h1>
 
 			<div class="enhanced-comment-validation-tabs">
 				<?php

@@ -63,10 +63,23 @@ Yes, It is compatible with the latest WordPress.
 
 Yes, It is compatible with Free/Premium themes.
 
+= How to get reCaptcha keys? =
+	
+Follow the next steps in order to get and enable reCaptcha protection using the official Google Captcha keys:
+
+1. Open your WordPress admin dashboard.
+2. Navigate to the plugin settings page.
+3. Click the "Get the API Keys" link.
+4. Enter your domain name and click the "Create Key" button.
+5. You will see your public and private keys. Copy them and paste them to the appropriate fields on the plugin settings > Google ReCAPTCHA tab.
+6. Save changes.
+
 = Is it possible to use reCaptcha V3? =
+
 Yes, This plugin support reCAPTCHA Version 3, Version 2 with Invisible.
 
 = Can I use this plugin in my language? =
+
 Yes. this plugin is translated ready. But If your language is not available you can make one. If you want to help us to translate this plugin to your language you are welcome.
 
 = Where can I suggest a new feature or report a bug? =
