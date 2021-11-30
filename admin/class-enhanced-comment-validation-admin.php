@@ -69,7 +69,7 @@ class Enhanced_Comment_Validation_Admin {
 			$enhanced_comment_validation_settings_new_elements['_captcha_invisible_badge'] = 'bottomright';
 
 			$enhanced_comment_validation_settings_final = array_merge( $enhanced_comment_validation_settings, $enhanced_comment_validation_settings_new_elements );
-			update_option( 'enhanced_comment_validation_settings', serialize( $enhanced_comment_validation_settings_final ) );
+			update_option( 'enhanced_comment_validation_settings', $enhanced_comment_validation_settings_final );
 		}
 		
 	}

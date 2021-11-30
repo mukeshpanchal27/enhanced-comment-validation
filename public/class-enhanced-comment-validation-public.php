@@ -219,7 +219,7 @@ class Enhanced_Comment_Validation_Public {
 
 					$invisible_captcha_badge = isset( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) && !empty( $enhanced_comment_validation_settings['_captcha_invisible_badge'] ) ? $enhanced_comment_validation_settings['_captcha_invisible_badge'] : '';
 					if ( $invisible_captcha_badge ) {
-						$data_size .= " data-badge='".$invisible_captcha_badge."'";						
+						$data_size .= " data-badge=".$invisible_captcha_badge;
 					}
 
 					if ( $invisible_captcha_badge == 'bottomright' || $invisible_captcha_badge === 'bottomleft' ) {
@@ -227,7 +227,7 @@ class Enhanced_Comment_Validation_Public {
 					}
 				}
 			
-				$fields['captcha'] = '<p'.esc_attr( $class ).'><span class="g-recaptcha" id="enhanced_comment_form_recaptcha"'.sanitize_key( $data_size ).'></span>
+				$fields['captcha'] = '<p'.esc_attr( $class ).'><span class="g-recaptcha" id="enhanced_comment_form_recaptcha"'.esc_attr( $data_size ).'></span>
 					<input type="hidden" class="hiddenRecaptcha required" name="hidden_recaptcha_comment" id="hidden_recaptcha_comment"></p>';
 			}
 		}
