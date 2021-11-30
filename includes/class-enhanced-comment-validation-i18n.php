@@ -34,11 +34,7 @@ class Enhanced_Comment_Validation_i18n {
 	 */
 	public function load_plugin_textdomain() {
 
-		load_plugin_textdomain(
-			'enhanced-comment-validation',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		load_plugin_textdomain( 'enhanced-comment-validation' );
 
 	}
 
