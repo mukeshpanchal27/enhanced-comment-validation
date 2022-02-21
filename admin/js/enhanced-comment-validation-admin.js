@@ -1,32 +1,35 @@
 (function( $ ) {
 	'use strict';
 
-	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+	$( document ).ready( function() {
+		
+		$( document ).on( 'click', '.enhanced-comment-validation-recaptcha-wrapper .enhanced-comment-validation-radio-li', function () {
+			var checkedVal = $( this ).find( 'input[type="radio"]:checked' ).val();
+			if ( checkedVal == 'v2' ) {
+				$( '.enhanced-comment-validation-left-space' ).show();
+
+				if ( $( '.enhanced-comment-validation-invisible-captcha-checkbox' ).is( ':checked' ) ) {
+					$( '.enhanced-comment-validation-invisible-captcha_badge' ).show();
+				} else {
+					$( '.enhanced-comment-validation-invisible-captcha_badge' ).hide();
+				}
+				
+			} else {
+				$( '.enhanced-comment-validation-left-space' ).hide();
+				$( '.enhanced-comment-validation-invisible-captcha_badge' ).show();
+			}
+
+			$( '.enhanced-comment-validation-lable-input-site-key, .enhanced-comment-validation-lable-input-secret-key' ).val( '' );
+		});
+
+		$( document ).on( 'click', '.enhanced-comment-validation-recaptcha-wrapper .enhanced-comment-validation-invisible-captcha-checkbox', function () {
+			if ( $( this ).is( ':checked' ) ) {
+				$( '.enhanced-comment-validation-invisible-captcha_badge' ).show();
+			} else {
+				$( '.enhanced-comment-validation-invisible-captcha_badge' ).hide();
+			}
+		});
+
+	});
 
 })( jQuery );

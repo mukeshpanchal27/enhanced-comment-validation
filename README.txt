@@ -1,114 +1,119 @@
-=== Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: https://mukeshpanchal.com/
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+=== Enhanced Comment Validation ===
+Contributors: mukesh27, dhavalpanchal
+Tags: comment, validation, comment validation, form validation, advance validation, validation message, Google ReCaptcha, ReCaptcha, antispam, captcha, invisible ReCaptcha, spam
+Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
+Requires at least: 5.6
+Tested up to: 5.9
+Requires PHP: 7.0
+Stable tag: 1.0.1
+License: GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Enhanced Comment Validation plugin is an effective security solution that protects your WordPress comment form.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Enhanced Comment Validation plugin is an effective security solution that protects your WordPress comment forms from spam entries while letting real people pass through with ease. It provides an option for enabling/disabling validation for the comment fields and the validation message and the option for reCAPTCHA Version 3, Version 2, Invisible are included.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Users are required to fill required fields and confirm that they are not a robot before the form can be submitted. It’s easy for people and hard for bots.
 
-A few notes about the sections above:
+Just a few clicks of setup and keep your site spam-free.
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+= Features of Enhanced Comment Validation =
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+The plugin is bundled with the below features.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+= Settings =
+Option for enable/disable comment form validation.
+
+= Validation Message Styles =
+The plugin gave three options for the validation message.
+
+* Border only
+* Custom Message only
+* Border and Message both
+
+= Validation Option and Message Setting =
+The plugin has enabled/disabled options for Comment, Name, Email, and Website. For those fields, it allows adding custom validation messages.
+
+= Recaptcha Theme and Badge Position =
+Now you can set theme color for the Recaptcha and Badge position for Invisible Captcha and V3.
+
+= What's Next =
+
+If you find this plugin useful , please leave a good rating and consider checking out my other plugins:
+
+* <a href="https://wordpress.org/plugins/easy-maintenance-mode-by-wpkoder/" rel="friend" title="Easy Maintenance Mode">Easy Maintenance Mode</a> - Setup a Maintenance Mode for your website.
+
+* <a href="https://wordpress.org/plugins/landing-page-for-wc-categories-tags/" rel="friend" title="Landing page for WC Archive Pages">Landing page for WC Archive Pages</a> - allow you to add Rich text for your WooCommerce archive( Shop, Product Category, Product Tags ) pages.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload `enhanced-comment-validation.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+1. Install Enhanced Comment Validation by uploading the `enhanced-comment-validation` directory to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the `Plugins` menu in WordPress
+3. Setup comment validation option by going to the `Settings > Enhanced Comment Validation` menu.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Does this plugin work with PHP 8? =
+Yes.
 
-An answer to that question.
+= Is this plugin working with the latest WordPress versions? =
 
-= What about foo bar? =
+Yes, It is compatible with the latest WordPress.
 
-Answer to foo bar dilemma.
+= Is it compatible with Free/Premium themes? =
+
+Yes, It is compatible with Free/Premium themes.
+
+= How to get reCaptcha keys? =
+	
+Follow the next steps in order to get and enable reCaptcha protection using the official Google Captcha keys:
+
+1. Open your WordPress admin dashboard.
+2. Navigate to the plugin settings page.
+3. Click the "Get the API Keys" link.
+4. Enter your domain name and click the "Create Key" button.
+5. You will see your public and private keys. Copy them and paste them to the appropriate fields on the plugin settings > Google ReCAPTCHA tab.
+6. Save changes.
+
+= Is it possible to use reCaptcha V3? =
+
+Yes, This plugin support reCAPTCHA Version 3, Version 2 with Invisible.
+
+= Can I use this plugin in my language? =
+
+Yes. this plugin is translated ready. But If your language is not available you can make one. If you want to help us to translate this plugin to your language you are welcome.
+
+= Where can I suggest a new feature or report a bug? =
+
+Please use [the issue tracker on Enhanced Comment Validation's GitHub repo](https://github.com/mukeshpanchal27/enhanced-comment-validation/issues) as it's easier to keep track of issues there, rather than on the wordpress.org support forums.
+
+= Do you accept donations? =
+
+[I am accepting donation](https://www.paypal.com/paypalme/mukeshpanchal27) and any support you can give will help me maintain this plugin and keep it free for everyone.
+
+In addition, if you like the plugin then I'd love for you to leave a review. Tell all your friends about it too!
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Settings
+2. Google ReCAPTCHA
+3. Validation
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 1.0.1 =
+* New: Added Theme option for Recaptcha V2 and V3
+* New: Added Badge Position option for Invisible Captcha and V3
+* Update: Update plugin settings page color.
+* Fixed: Remove validation message for Recaptcha V3 
+* Fixed: Some minor fixes
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 1.0.0 =
+* Initial version
 
 == Upgrade Notice ==
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+= 1.0.1 =
+* Initial version

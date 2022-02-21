@@ -30,6 +30,23 @@ class Enhanced_Comment_Validation_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
+		
+		$enhanced_comment_validation_settings = get_option( 'enhanced_comment_validation_settings' );
+		if ( empty( $enhanced_comment_validation_settings ) ) {
+			$default_options = array(
+				'_enable_validation' => 'yes',
+				'_message_style' => 'style1',
+				'_enable_author' => 'yes',
+				'_enable_email' => 'yes',
+				'_author_message' => __( 'Please enter your name', 'enhanced-comment-validation' ),
+				'_email_message' => __( 'Please enter your email', 'enhanced-comment-validation' ),
+				'_captcha_version' => 'v2',
+				'_validation_message_v2' => __( 'Google reCAPTCHA verification failed. The response parameter is invalid or malformed.', 'enhanced-comment-validation' ),
+				'_captcha_theme' => 'light',
+				'_captcha_invisible_badge' => 'bottomright',
+			);
+			update_option( 'enhanced_comment_validation_settings', $default_options );
+		}
 
 	}
 

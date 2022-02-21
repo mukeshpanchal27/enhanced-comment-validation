@@ -14,9 +14,8 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Enhanced Comment Validation
- * Plugin URI:        https://mukeshpanchal.com/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Description:       Enhanced Comment Validation plugin is an effective security solution that protects your WordPress comment form.
+ * Version:           1.0.1
  * Author:            Mukesh Panchal
  * Author URI:        https://mukeshpanchal.com/
  * License:           GPL-2.0+
@@ -26,8 +25,8 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
 /**
@@ -35,34 +34,37 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ENHANCED_COMMENT_VALIDATION_VERSION', '1.0.0' );
+define('ENHANCED_COMMENT_VALIDATION_VERSION', '1.0.1');
+define('ENHANCED_COMMENT_VALIDATION_BASENAME', plugin_basename(__FILE__));
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-enhanced-comment-validation-activator.php
  */
-function activate_enhanced_comment_validation() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-enhanced-comment-validation-activator.php';
-	Enhanced_Comment_Validation_Activator::activate();
+function activate_enhanced_comment_validation()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-enhanced-comment-validation-activator.php';
+    Enhanced_Comment_Validation_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-enhanced-comment-validation-deactivator.php
  */
-function deactivate_enhanced_comment_validation() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-enhanced-comment-validation-deactivator.php';
-	Enhanced_Comment_Validation_Deactivator::deactivate();
+function deactivate_enhanced_comment_validation()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-enhanced-comment-validation-deactivator.php';
+    Enhanced_Comment_Validation_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_enhanced_comment_validation' );
-register_deactivation_hook( __FILE__, 'deactivate_enhanced_comment_validation' );
+register_activation_hook(__FILE__, 'activate_enhanced_comment_validation');
+register_deactivation_hook(__FILE__, 'deactivate_enhanced_comment_validation');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-enhanced-comment-validation.php';
+require plugin_dir_path(__FILE__) . 'includes/class-enhanced-comment-validation.php';
 
 /**
  * Begins execution of the plugin.
@@ -73,10 +75,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-enhanced-comment-validatio
  *
  * @since    1.0.0
  */
-function run_enhanced_comment_validation() {
-
-	$plugin = new Enhanced_Comment_Validation();
-	$plugin->run();
-
+function run_enhanced_comment_validation()
+{
+    $plugin = new Enhanced_Comment_Validation();
+    $plugin->run();
 }
 run_enhanced_comment_validation();
